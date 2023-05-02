@@ -1,5 +1,6 @@
 import { Row, Col } from "antd";
 import React, { useState } from "react";
+import Logo from "../../components/Logo";
 import LoginModal from "./components/LoginModal";
 import SigninModal from "./components/SigninModal";
 
@@ -8,8 +9,16 @@ const LoginPage = () => {
 
   return (
     <>
-      <Row style={{ height: "100vh", backgroundColor: "grey" }}>
-        <Col span={4}>Logo</Col>
+      <Row
+        style={{
+          height: "100vh",
+          // backgroundImage: `url("../../assets/LoginPageBackground.png")`,
+          backgroundColor: "grey",
+        }}
+      >
+        <Col span={4} className="pt-3">
+          <Logo size="60" color="white" />
+        </Col>
         <Col
           span={16}
           style={{
