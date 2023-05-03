@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Logo from "../../components/Logo";
 import LoginModal from "./components/LoginModal";
 import SigninModal from "./components/SigninModal";
+import background from "../../assets/LoginPageBackground.png";
 
 const LoginPage = () => {
   const [status, setStatus] = useState("Login");
@@ -12,8 +13,9 @@ const LoginPage = () => {
       <Row
         style={{
           height: "100vh",
-          // backgroundImage: `url("../../assets/LoginPageBackground.png")`,
-          backgroundColor: "grey",
+          backgroundImage: `url(${background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
       >
         <Col span={4} className="pt-3">
