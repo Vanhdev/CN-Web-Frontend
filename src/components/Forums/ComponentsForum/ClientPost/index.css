@@ -1,0 +1,26 @@
+.clientPost, .listClientPost {
+    width: 100%;
+}
+.client-post-title {
+    font-weight: 600;
+    line-height: 50px;
+    cursor: pointer;
+}
+.client-post-desc {
+    color: var(--image-color);
+    width: 650px;
+    text-align: justify;
+}
+.single-post {
+    border: 1px solid #ccc;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+.forum-divider-style {
+    height: 55px;
+    width: 1.5px;
+    background-color: #d7d4d4;
+}

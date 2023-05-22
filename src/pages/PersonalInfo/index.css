@@ -1,0 +1,19 @@
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 2px solid #ccc;
+    width: 640px;
+    margin: 25px 0;
+}
+.input {
+    margin-bottom: 0 !important;
+}
+.personalInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 150px;
+    margin-top: 50px;
+}
