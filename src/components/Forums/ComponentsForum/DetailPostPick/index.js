@@ -1,27 +1,49 @@
 import AvatarPost from "../../../AvatarPost";
 import avatar from '../../../../assets/images/main-avatar.svg';
-import { Image, Space, Tag } from "antd";
+import { Image, Space, Spin, Tag } from "antd";
 import './index.css';
 import IconText from "../IconText";
 import {LikeFilled, DislikeFilled, EyeFilled} from '@ant-design/icons';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import IconButton from "../IconButton";
+import { getAllPosts } from "../../../../API";
 
-function DetailPostPick() {
+function DetailPostPick(props) {
+    const {idPost} = props;
+
+    const [data, setData] = useState({});
+    const [loading, setLoading] = useState(false);
     const [countLike, setCountLike] = useState(102);
     const [countDislike, setCountDislike] = useState(10);
     const [like, setLike] = useState(false);
     const [dislike, setDislike] = useState(false);
+    
+    useEffect( () => {
+        setLoading(true);
+        getAllPosts().then(res => {
+            setData(res.posts[idPost - 1]);
+            setLoading(false);
+        })
+    },[]);
+
+    if(loading) {
+        return(
+            <Spin></Spin>
+        )
+    }
+
 
     return(
         <Space className="detail-post-pick" direction="vertical" size={20}>
             <div className="header-post">
                 <AvatarPost avatar={avatar} name="Anh Leonard" date="17/05/2023"/>
-                <Tag color="green">Topic: Tên topic</Tag>
+                {data.tags && <Tag color="green">Topic: {data.tags[0]}, {data.tags[1]}, {data.tags[2]} </Tag>}
             </div>
             <div className="content-post">
-                Adding a forum section can be highly rewarding when running an online casino or gambling website. Thanks to Coinflip, you can now establish a full-blown website for the industry without breaking a sweat. Let’s face it, you will find it all and then some in this massive bundle of practical features and functions.
-                Coinflip delivers every necessary page layout, from front to internal. Moreover, the layout is responsive and cross-browser compatible. As for the forums section, Coinflip uses the BuddyPress plugin, which helps everyone make it happen without experience. Enjoy the live demo preview and go from there.
+                <div style={{textAlign: 'center'}}>
+                    <b style={{fontSize: '18px'}}>{data.title}</b>
+                </div>
+                {data.body}
             </div>
             <div>
                 <Space size={16}>
@@ -88,7 +110,7 @@ function DetailPostPick() {
                 />)}
                 <IconText 
                     icon={<EyeFilled style={{color: 'var(--blue-color)'}}/>} 
-                    text={'500'}
+                    text={data.userId}
                 />
             </Space>
         </Space>    

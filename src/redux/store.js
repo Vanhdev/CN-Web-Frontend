@@ -5,6 +5,9 @@ import tourReducer from "./tourSlice";
 import newPostReducer from './newPostSlice';
 import commentPostReducer from './commentPostSlice';
 import numberClickReducer from './numberClickSlice';
+import adminPostReducer from './adminPostSlice';
+import searchTextReducer from "./searchTextSlice";
+import commentsTourReducer from './commentsTourSlice';
 
 export default configureStore({
     reducer: {
@@ -14,5 +17,8 @@ export default configureStore({
         newPost: newPostReducer,
         commentPost: commentPostReducer,
         numberClick: numberClickReducer,
+        adminPost: adminPostReducer,
+        searchText: searchTextReducer,
+        commentsTour: commentsTourReducer,
     }
 })

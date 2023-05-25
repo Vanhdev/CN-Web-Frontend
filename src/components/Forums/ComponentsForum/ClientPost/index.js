@@ -3,20 +3,21 @@ import {List} from "antd";
 import './index.css';
 import ClientSinglePost from '../ClientSinglePost';
 
-function ClientPost() {
-    const data = [1,2,3,4,5,6,7,8,9,10];
+function ClientPost(props) {
+
+    const {clientPosts} = props;
 
     return(
         <div className="clientPost">
             <List
                 itemLayout="vertical"
                 className='listClientPost'
-                dataSource={data}
+                dataSource={clientPosts}
                 pagination={{
-                    pageSize: 3,
+                    pageSize: 5,
                 }}
                 renderItem={(item) => (
-                    <ClientSinglePost/>
+                    <ClientSinglePost post={item}/>
                 )}
             >
             </List>

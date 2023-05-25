@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {List} from "antd";
-import SinglePost from '../SinglePost';
+import AdminSinglePost from '../AdminSinglePost';
 
-function AllUserPost(props) {
-    const {userPosts} = props;
+function AdminListPost(props) {
+    const {list, check, adminPosts} = props;
 
     return(
         <div className="clientPost">
             <List
                 itemLayout="vertical"
                 className='listClientPost'
-                dataSource={userPosts}
+                dataSource={adminPosts}
                 pagination={{
                     pageSize: 5,
                 }}
                 renderItem={(item) => (
-                    <SinglePost post={item}/>
+                    <AdminSinglePost list={list} check={check} post={item}/>
                 )}
             >
             </List>
@@ -24,4 +24,4 @@ function AllUserPost(props) {
 }
 
 
-export default AllUserPost;
+export default AdminListPost;

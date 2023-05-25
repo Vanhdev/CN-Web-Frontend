@@ -2,12 +2,16 @@ import { useState } from "react";
 import UpdateComment from "../UpdateComment";
 import UserComments from "../UserComments";
 
-function WrapComments() {
+function WrapComments(props) {
+    const {item, index} = props;
+
     const [showUpdate, setShowUpdate] = useState(false);
 
     return(
         <>
-            {showUpdate ? <UpdateComment setShowUpdate={setShowUpdate}/> : <UserComments setShowUpdate={setShowUpdate}/>}
+            {
+                showUpdate ? <UpdateComment setShowUpdate={setShowUpdate} item={item}/> : <UserComments setShowUpdate={setShowUpdate} item={item} index={index}/>
+            }
         </>
     )
 }

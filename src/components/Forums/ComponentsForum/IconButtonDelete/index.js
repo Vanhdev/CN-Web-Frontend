@@ -7,7 +7,7 @@ function IconButtonDelete(props) {
     }
     return(
         <Space size={3} style={{cursor: 'pointer'}} onClick={handleDeletePost}>
-            {icon} <span style={{color: 'var(--gray-color)'}}>{text}</span>
+            {icon} <span style={{color: 'var(--gray-color)', fontSize: '14px'}}>{text}</span>
         </Space>
     )
 }

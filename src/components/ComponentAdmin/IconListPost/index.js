@@ -1,13 +1,13 @@
 import { Space } from "antd";
+import IconText from "../../Forums/ComponentsForum/IconText";
+import AlertConfirmDeletePost from "../../Forums/ComponentsForum/AlertConfirmDeletePost";
 import {EyeOutlined, HeartFilled} from '@ant-design/icons';
-import IconText from '../IconText';
-import AlertConfirmDeletePost from '../AlertConfirmDeletePost';
 
-function IconSingleUserPost(props) {
+function IconListPost(props) {
     const {post} = props;
 
     return(
-        <div>
+        <div style={{marginRight: '25px'}}>
             <Space direction='vertical'>
                 <IconText icon={<EyeOutlined style={{color: 'var(--blue-color)'}}/>} text={`${post.userId}`}/>
                 <IconText icon={<HeartFilled style={{color: 'var(--pink-color)'}}/>} text={`${post.reactions}`}/>
@@ -17,4 +17,4 @@ function IconSingleUserPost(props) {
     )
 }
 
-export default IconSingleUserPost;
+export default IconListPost;

@@ -1,13 +1,24 @@
 import { Button, Image, Input, Space } from "antd";
 import forumIcon from '../../../assets/images/forum-icon.svg';
-import addPost from '../../../assets/images/add-post.svg';
-import collections from '../../../assets/images/collections.svg';
-import {FileAddOutlined, FormOutlined, SnippetsOutlined} from '@ant-design/icons';
+import {FormOutlined, SnippetsOutlined} from '@ant-design/icons';
 import './index.css';
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { updateTextSearch } from "../../../redux/searchTextSlice";
 const {Search} = Input;
 
 function ForumHeader() {
+    const [key, setKey] = useState('');
+    const dispatch = useDispatch();
+
+    const handleSearch = () => {
+        const keyWord = {
+            text: key,
+        }
+        dispatch(updateTextSearch(keyWord));
+    }
+
     const navigate = useNavigate();
 
     const handleNewPost = () => {
@@ -33,7 +44,17 @@ function ForumHeader() {
             </Space>
             <div>
                 <Space>
-                    <Search className="forum-search" placeholder="Tìm kiếm chủ đề" size="large"/>
+                    {
+                        window.location.href === 'http://localhost:3000/forum/'
+                        &&
+                        <Search 
+                            lassName="forum-search" 
+                            placeholder="Tìm kiếm tên bài viết ở đây" 
+                            size="large"
+                            onChange={(e) => setKey(e.target.value)}
+                            onSearch={handleSearch}
+                        />
+                    }
                     <Space size={30}>
                         <Button size="large" icon={<FormOutlined />} onClick={handleNewPost} className="btn-post">Bài viết mới</Button>
                         <Button icon={<SnippetsOutlined />} size="large" onClick={handleMyPost} >Bài viết của tôi</Button>

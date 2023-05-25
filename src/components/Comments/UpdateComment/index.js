@@ -6,15 +6,15 @@ import { updateComment } from "../../../redux/commentSlice";
 
 
 function UpdateComment(props) {
-    const {setShowUpdate} = props;
-    const userValue = useSelector(state => state.commentUser);
-    const dispatch = useDispatch();
+    const {setShowUpdate, item} = props;
 
-    const [positionValue, setPositionValue] = useState(userValue.positionValue);
-    const [roomValue, setRoomValue] = useState(userValue.roomValue);
-    const [priceValue, setPriceValue] = useState(userValue.priceValue);
-    const [serviceValue, setServiceValue] = useState(userValue.serviceValue);
-    const [comment, setComment] = useState(userValue.comment);
+    const [positionValue, setPositionValue] = useState(item.positionValue);
+    const [roomValue, setRoomValue] = useState(item.roomValue);
+    const [priceValue, setPriceValue] = useState(item.priceValue);
+    const [serviceValue, setServiceValue] = useState(item.serviceValue);
+    const [comment, setComment] = useState(item.comment);
+
+    const dispatch = useDispatch();
 
     const handleSaveComment = () => {
         const newComment = {
@@ -42,7 +42,11 @@ function UpdateComment(props) {
                     <RateItemColumn label='Giá cả' value={serviceValue} setValue={setServiceValue}/>
                 </Space>
                 <div className="margin25">
-                    {!comment ? <Spin></Spin> : <Input.TextArea style={{height: '100px'}} defaultValue={comment} onChange={(e) => setComment(e.target.value)}/>}
+                    {
+                        !comment 
+                        ? <Spin></Spin> 
+                        : <Input.TextArea style={{height: '100px'}} defaultValue={comment} onChange={(e) => setComment(e.target.value)}/>
+                    }
                 </div>
             </div>
         </div>

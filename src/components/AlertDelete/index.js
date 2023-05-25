@@ -1,14 +1,29 @@
 import { Alert, Button, Space } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { removeComment } from "../../redux/commentsTourSlice";
 
 function AlertDelete(props) {
-    const {setShowAlert} = props;
+    const {setShowAlert, index} = props;
+
+    const dispatch = useDispatch();
+
+    const handleDeleteComment = () => {
+        dispatch(removeComment(index))
+    }
+
     return(
         <Alert
             message="Bạn có chắc chắn xóa bình luận này không?"
             type="info"
             action={
                 <Space direction="vertical" style={{marginLeft: '25px'}}>
-                    <Button size="small" danger type="primary" style={{width: 70}}>
+                    <Button 
+                        size="small" 
+                        danger 
+                        type="primary" 
+                        style={{width: 70}}
+                        onClick={handleDeleteComment}
+                    >
                         Xóa
                     </Button>
                 </Space>

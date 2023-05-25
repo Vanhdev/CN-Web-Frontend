@@ -1,4 +1,4 @@
-import { Alert, Avatar, Button, Carousel, Col, Collapse, Divider, Dropdown, Form, Image, Input, Rate, Row, Space, Typography, message} from "antd";
+import {Button, Carousel, Col, Collapse, Divider, Form, Image, Input, Rate, Row, Space, message} from "antd";
 import BlueRiverHeader from "../../components/BlueRiverHeader";
 import location from '../../assets/images/location.svg';
 import './index.css';
@@ -10,22 +10,16 @@ import person from '../../assets/images/person.svg';
 import timeToTravel from '../../assets/images/time-to-travel.svg';
 import letGoTravel from '../../assets/images/letGoTravel.svg';
 import greenTick from '../../assets/images/green-tick.svg';
-import avatar from '../../assets/images/main-avatar.svg';
 
-import {CaretDownOutlined} from '@ant-design/icons';
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import UpdateComment from "../../components/Comments/UpdateComment";
-import AvatarPost from "../../components/AvatarPost";
-import UserComments from "../../components/Comments/UserComments";
-import ClientComments from "../../components/Comments/ClientComments";
 import AllComments from "../../components/Comments/AllComments";
 import BookTour from "../../components/BoxBookTour/BookTour";
+import RateItemResult from "../../components/Comments/RateItemResult";
+import CurrentUserComment from "../../components/Comments/CurrentUserComment";
 
 const { Panel } = Collapse;
 
 function DetailTour() {
+    
     const contentStyle = {
         height: '180px',
         color: '#000',
@@ -33,6 +27,7 @@ function DetailTour() {
         textAlign: 'center',
         background: '#364d79',
       };
+
     return(
         <div className="detailTour">
             <BlueRiverHeader></BlueRiverHeader>
@@ -89,17 +84,17 @@ function DetailTour() {
                         <Col span={16}>
                             <div>
                                 <div className="common-title">Tổng quan</div>
-                                <div>
-                                    <div>The Discovery Islands are a sea kayaking paradise, and as you will discover, one of the West Coast’s best kept secrets. You’ll find no better sea kayaking vacation throughout remote islands on BC’s central coast.</div>
-                                    <div>Comprised of a dozen islands in the Discovery Passage between Vancouver Island and the mainland in British Columbia, we will take you kayaking throughout this sparsely inhabited remote group of islands on this kayaking tour.</div>
-                                    <div>Paddling around the islands provides the ideal way to get close to nature and be completely enveloped in the beauty of towering trees, remote beaches, and mountains. Discover the wildlife that inhabit this region and the secrets of British Columbia’s rich and plentiful inter-tidal life while exploring magical waterways.‍</div>
+                                <div style={{lineHeight: '25px', textAlign:'justify', fontWeight: '300', marginTop: '20px', fontSize: '15px'}}>
+                                    The Discovery Islands are a sea kayaking paradise, and as you will discover, one of the West Coast’s best kept secrets. You’ll find no better sea kayaking vacation throughout remote islands on BC’s central coast.
+                                    Comprised of a dozen islands in the Discovery Passage between Vancouver Island and the mainland in British Columbia, we will take you kayaking throughout this sparsely inhabited remote group of islands on this kayaking tour.
+                                    Paddling around the islands provides the ideal way to get close to nature and be completely enveloped in the beauty of towering trees, remote beaches, and mountains. Discover the wildlife that inhabit this region and the secrets of British Columbia’s rich and plentiful inter-tidal life while exploring magical waterways.‍
                                 </div>
                             </div>
                             <Divider/>
                             <div>
                                 <div className="common-title">Điểm nổi bật</div>
                                 <div>
-                                    <ul>
+                                    <ul style={{lineHeight: '25px', textAlign:'justify', fontWeight: '300', marginTop: '20px', marginLeft: '20px', fontSize: '15px'}}>
                                         <li>Be enveloped in the beauty of towering trees, remote beaches, and mountains of the Canadian wilderness</li>
                                         <li>Have close encounters with BC’s coastal wildlife; sea lions, seals, pacific white sided dolphins, otters, birds and some of the largest starfish in the world</li>
                                         <li>Be on the lookout for Humpback whales that have made a strong resurgence in the Discovery Islands</li>
@@ -148,7 +143,7 @@ function DetailTour() {
                                 </div>
                             </div>
                             <div className="wrap-comments">
-                                <CurrentUser/>
+                                <CurrentUserComment/>
                                 <div className="all-comments">
                                     <AllComments/>
                                 </div>
@@ -196,53 +191,6 @@ function Destination({name, desc}) {
                 <div>{desc}</div>
             </Panel>
         </Collapse>
-    )
-}
-
-function RateItemResult({label, value}) {
-    if(!value) {
-        return(
-            <div className="all-rate">
-                <div>{label}</div>
-                <div>
-                    <Rate allowHalf style={{color: 'var(--green-color)'}}></Rate>
-                </div>
-            </div>  
-        )
-    }
-    return(
-        <div className="all-rate">
-            <div>{label}</div>
-            <div>
-                <Rate value={value} allowHalf allowClear={false} style={{color: 'var(--green-color)'}}></Rate>
-            </div>
-        </div>   
-    )
-}
-
-function CurrentUser() {
-    const hanlePostComment = () => {
-        message.success('Post xong gòi nha!');
-    }
-    return(
-        <>
-            <AvatarPost avatar={avatar} name='Anh Leonard' date='12/04/2023'/>
-            <Space className="evaluate-rate">
-                <Space size={50}>
-                    <RateItemResult label={'Vị trí địa lý'}/>
-                    <RateItemResult label={'Dịch vụ'}/>
-                </Space>
-                <Space size={50}>
-                    <RateItemResult label={'Phòng ốc'}/>
-                    <RateItemResult label={'Giá cả'}/>
-                </Space>
-            </Space>
-            <Form style={{width: '100%'}}>
-                <Input placeholder="Nhập bình luận của bạn" bordered={false} className="user-input"></Input>
-                <Divider style={{borderColor: '#000', marginTop: '5px'}}/>
-                <Button htmlType="button" type="primary" className="post-comment-button" onClick={hanlePostComment}>Đăng</Button>
-            </Form>
-        </>    
     )
 }
 
