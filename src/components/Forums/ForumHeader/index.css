@@ -1,0 +1,25 @@
+.forumHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-title {
+    color: var(--pink-color);
+    font-size: 30px;
+    font-weight: 600;
+}
+.adding-title {
+    color: var(--blue-color);
+}
+.ant-input-group {
+    width: 350px;
+    display: flex !important;
+    align-items: center;
+    margin-left: -415px;
+}
+.logo-forum {
+    cursor: pointer;
+}
+.btn-post {
+    
+}

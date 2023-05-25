@@ -1,0 +1,17 @@
+.header-title-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.header-title-search .ant-input-group {
+    margin-left: 0 !important;
+    width: 200px;
+}
+.search-post {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 53px;
+}

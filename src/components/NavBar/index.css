@@ -1,0 +1,27 @@
+.button-tools {
+    border-bottom: 2px solid #ccc;
+    color: black;
+    width: 150px;
+    border-radius: 0;
+}
+.button-tools span {
+    display: block;
+    margin-top: -12px;
+}
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+.navbar-avatar {
+    display: flex;
+    flex-direction: column;
+}
+.navbar-tools {
+    display: flex;
+    flex-direction: column;
+}
+.item-tool {
+    width: 180px !important;
+    margin: 20px 0 !important;
+    text-align: center;
+}

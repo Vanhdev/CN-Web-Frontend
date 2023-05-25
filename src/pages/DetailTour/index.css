@@ -1,0 +1,137 @@
+* {
+    --gray-color: #ABB8C3;
+    --image-color: #999999;
+    --blue-color: #5A62AA;
+    --pink-color: #DC4E62;
+    --green-color: #2DD75D;
+}
+/* .detail-tour-container {
+    padding: 20px 100px;
+} */
+.common-title {
+    font-size: 20px;
+}
+.detail-tour-header {
+    height: 440px;
+    background-color: #f5f5f5;
+    padding: 20px 100px;
+}
+.wrap-icon {
+    display: flex;
+    align-items: center;
+}
+.label-icon {
+    font-weight: 700;
+    font-size: 20px;
+}
+.price-icon {
+    color: var(--pink-color);
+}
+.all-icons {
+    display: flex;
+    margin: 25px 0;
+}
+.button-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 20px;
+    width: 130px;
+}
+.button-image:hover {
+    cursor: pointer;
+}
+.address {
+    display: flex;
+    align-items: center;
+    margin-left: -5px;
+}
+.all-title-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+.detail-tour-content {
+    padding: 20px 100px;
+}
+.detail-service {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.wrap-all-tours .ant-collapse-header-text {
+    color: var(--pink-color) !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}
+.ant-collapse-header {
+    align-items: center !important;
+}
+.collapse-tour {
+    margin: 25px 0;
+}
+.rate {
+    display: flex !important;
+    align-items: baseline;
+}
+.rate-number {
+    font-size: 55px !important;
+    font-weight: 600;
+    color: var(--blue-color);
+}
+.final-rate {
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrap-all-rate {
+    display: flex;
+    justify-content: space-between;
+}
+.all-rate {
+    width: 250px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.avatar-cmt-user {
+    display: flex;
+    flex-direction: column;
+}
+.rate-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.evaluate-rate {
+    display: flex !important;
+    flex-direction: column;
+    margin: 25px 0;
+}
+.post-comment-button {
+    float: right;
+}
+.client-evaluate {
+    display: flex !important;
+    justify-content: space-between;
+}
+.wrap-client-comments {
+    margin: 50px 0;
+}
+.margin25 {
+    margin: 25px 0;
+}
+.margin50 {
+    margin: 50px 0;
+}
+.user-option:hover {
+    cursor: pointer;
+}
+.user-header-cmt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

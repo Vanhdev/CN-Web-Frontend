@@ -1,0 +1,18 @@
+.changePass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+.change-pass-item {
+    width: 640px;
+}
+.change-pass-form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.ant-form label {
+    font-size: 16px !important;
+}

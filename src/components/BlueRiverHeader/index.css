@@ -1,0 +1,29 @@
+.button {
+    border-bottom: 2px solid #ccc;
+    border-radius: 0 !important;
+    color: white;
+    font-weight: 500;
+}
+.top-image {
+    position: absolute;
+    width: 1464px !important;
+    height: 200px !important;
+    top: -15px;
+}
+.avatar {
+    border: 2px solid #ffffff;
+}
+.name {
+    font-weight: 500;
+    z-index: 1000 !important;
+    color: white
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+}
+.blue-river-header {
+    height: 200px;
+}

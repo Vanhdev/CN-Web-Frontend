@@ -1,0 +1,19 @@
+.header-option {
+    background-color: var(--pink-color);
+    height: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.admin-title-option {
+    width: 296.6px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 18px;
+}
+.admin-title-option:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(224, 123, 137);
+}

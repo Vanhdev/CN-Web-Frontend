@@ -1,0 +1,12 @@
+.makeNewPost {
+    width: 100%;
+}
+.makeNewPost .ant-space, .makeNewPost .ant-space-item, .makeNewPost .ant-space-item .ant-row {
+    width: 100%;
+}
+.main-font {
+    font-family: 'Signika', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+

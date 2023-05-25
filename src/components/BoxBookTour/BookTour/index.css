@@ -1,0 +1,52 @@
+.bookTour {
+    width: 100%;
+}
+.cardBookTour {
+    margin: 0 auto !important;
+}
+.bookTourContainer {
+    padding: 5px;
+}
+.person-ticker {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+.fee-detail {
+    display: flex;
+    justify-content: space-between;
+}
+.main-fee-title {
+    font-size: 16px;
+}
+.style-divider {
+    margin: 15px 0;
+}
+.date-start, .time-start, .total-money {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.total-money-style {
+    font-size: 20px;
+    font-weight: 600;
+}
+.pay-button {
+    color: var(--blue-color);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    height: 55px;
+    width: 150px;
+    margin: 25px 0 10px;
+}
+/* .total-money-input {
+    width: 50px;
+    font-size: 20px;
+    color: var(--blue-color);
+    font-weight: 600;
+    font-family: 'Signika', sans-serif;
+    text-align: end;
+    padding: 0;
+} */

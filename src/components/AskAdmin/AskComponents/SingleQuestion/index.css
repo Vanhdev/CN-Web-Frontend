@@ -1,0 +1,5 @@
+.all-questions .ant-collapse-header-text {
+    color: var(--blue-color) !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+}

@@ -1,0 +1,11 @@
+.user-cmt-post__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-cmt-post__content {
+    font-family: 'Signika', sans-serif;
+    font-weight: 300;
+    margin: 15px 0;
+    font-size: 15px;
+}
