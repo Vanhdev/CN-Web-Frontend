@@ -4,7 +4,7 @@ import PageContent from './components/PageContent';
 function App() {
   return (
     <div className="App">
-      <PageContent/>
+      <PageContent />
     </div>
   );
 }
