@@ -6,12 +6,14 @@ import AskSomething from "../../pages/ForumPages/AskSomething";
 import MainAdminPage from "../../components/MainAdminPage";
 import LoginPage from "../../pages/Login";
 import RegisterPage from "../../pages/Register";
+import AllToursPage from "../../pages/AllTours";
 
 function AppRoutes() {
     return(
         <Routes>
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/register" element={<RegisterPage />}></Route>
+            <Route path="/all-tours" element={<AllToursPage />}></Route>
             <Route path="/personal-info/*" element={<Personal/>}></Route>
             <Route path="/detail-tour/:id" element={<DetailTour/>}></Route>
             <Route path="/ask-something" element={<AskSomething/>}></Route>
