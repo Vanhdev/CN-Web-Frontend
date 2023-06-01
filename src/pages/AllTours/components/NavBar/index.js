@@ -3,9 +3,10 @@ import React from "react";
 import { MdTempleBuddhist } from "react-icons/md";
 import "../../../../assets/fonts.css";
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const { className } = props;
   return <>
-    <Row className="bg-neutral-700 flex items-center px-10">
+    <Row className={"bg-transparent flex items-center px-10 h-fit w-full " + className}>
 
       <Col span={6} className="flex justify-center border-solid">
         <Button type="link" className="text-black bg-white h-10 rounded-none rounded-t-xl">
@@ -49,4 +50,4 @@ const NavBar = () => {
 
 export default NavBar;
 
-// TODO: hover icon + transparent background
+// TODO: hover icon
