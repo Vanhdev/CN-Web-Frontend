@@ -6,8 +6,10 @@ import { Image, Row, Col, Button } from "antd";
 import "../../assets/fonts.css";
 import TourBox from "./components/TourBox";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate= useNavigate();
   return <>
     <Row className="w-full relative">
       <Image src={bg} width={"100%"} preview={false} />
@@ -27,7 +29,7 @@ const HomePage = () => {
         <TourBox />
       </Row>
       <Col span={24} className="flex justify-end">
-        <Button type="link" className="border-none p-0 translate-y-1">
+        <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("all-tours")}>
           <Row>
             <Col style={{fontFamily: "Signika", fontSize: 15, color: "#4B59D7"}}>Xem tất cả tours</Col>
             <Col className="flex items-center">
@@ -53,4 +55,4 @@ const HomePage = () => {
 
 export default HomePage;
 
-// TODO: tourInfoBox component
+// perfect destination + footer
