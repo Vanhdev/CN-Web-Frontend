@@ -15,6 +15,7 @@ import AllComments from "../../components/Comments/AllComments";
 import BookTour from "../../components/BoxBookTour/BookTour";
 import CurrentUserComment from "../../components/Comments/CurrentUserComment";
 import Evaluate from "../../components/DetailTourComponent/Evaluate";
+import Destination from "../../components/DetailTourComponent/Destination";
 
 const { Panel } = Collapse;
 
@@ -166,19 +167,6 @@ function Service({desc}) {
             <Image src={greenTick}></Image>
             <div>{desc}</div>
         </Space>    
-    )
-}
-
-function Destination({name, desc}) {
-    return(
-        <Collapse expandIconPosition="start" className="collapse-tour">
-            <Panel
-                header={name}
-                key={name}
-            >
-                <div>{desc}</div>
-            </Panel>
-        </Collapse>
     )
 }
 

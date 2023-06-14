@@ -4,6 +4,7 @@ import DetailTour from "../../pages/DetailTour";
 import Forum from "../../components/Forums/Forum";
 import AskSomething from "../../pages/ForumPages/AskSomething";
 import MainAdminPage from "../../components/MainAdminPage";
+import AboutUs from "../../pages/AboutUs";
 
 function AppRoutes() {
     return(
@@ -13,6 +14,7 @@ function AppRoutes() {
             <Route path="/ask-something" element={<AskSomething/>}></Route>
             <Route path="/forum/*" element={<Forum/>}></Route>
             <Route path="/admin/*" element={<MainAdminPage/>}></Route>
+            <Route path="/about-us" element={<AboutUs/>}></Route>
         </Routes>
     )
 }

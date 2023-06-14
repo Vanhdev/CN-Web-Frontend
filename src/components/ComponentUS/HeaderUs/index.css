@@ -1,0 +1,4 @@
+.color-hover:hover {
+    color: var(--blue-color) !important;
+    text-shadow: 2px 2px 10px var(--blue-color) !important;
+}
