@@ -17,3 +17,6 @@
     margin-left: 150px;
     margin-top: 50px;
 }
+.change-pass-form .ant-form-item-explain-error {
+    text-align: end !important;
+}

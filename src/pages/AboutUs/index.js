@@ -1,13 +1,9 @@
-import ImageUs from "../../components/ComponentUS/ImageUs";
-import HeaderUs from "../../components/ComponentUS/HeaderUs";
-import ContentUs from "../../components/ComponentUS/ContentUs";
+import ContentAboutUs from "../../components/ComponentUS/ContentAboutUs";
 
 function AboutUs() {
     return(
         <div className="about-us">
-            <HeaderUs/>
-            <ImageUs/>
-            <ContentUs/>
+            <ContentAboutUs/>
         </div>
     )
 }
