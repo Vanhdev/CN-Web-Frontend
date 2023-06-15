@@ -1,0 +1,12 @@
+.single-question-id {
+    margin-bottom: -15px;
+    margin-top: 20px;
+    color: var(--image-color);
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.single-question .ant-collapse-header-text {
+    font-size: 17px;
+    color: var(--blue-color);
+}

@@ -13,8 +13,9 @@ import greenTick from '../../assets/images/green-tick.svg';
 
 import AllComments from "../../components/Comments/AllComments";
 import BookTour from "../../components/BoxBookTour/BookTour";
-import RateItemResult from "../../components/Comments/RateItemResult";
 import CurrentUserComment from "../../components/Comments/CurrentUserComment";
+import Evaluate from "../../components/DetailTourComponent/Evaluate";
+import Destination from "../../components/DetailTourComponent/Destination";
 
 const { Panel } = Collapse;
 
@@ -128,19 +129,7 @@ function DetailTour() {
                             </div>
                             <Divider/>
                             <div className="wrap-rate">
-                                <div className="common-title">Đánh giá</div>
-                                <div className="wrap-all-rate">
-                                    <div className="final-rate">
-                                        <Space size={0} className="rate"><h2 className="rate-number">5.0</h2>/5</Space>
-                                        <div>Give me some feedbacks, we give you satisfaction!</div>
-                                    </div>
-                                    <div>
-                                        <RateItemResult label='Vị trí địa lý' value={5}></RateItemResult>
-                                        <RateItemResult label='Dịch vụ' value={5}></RateItemResult>
-                                        <RateItemResult label='Phòng ốc' value={5}></RateItemResult>
-                                        <RateItemResult label='Giá cả' value={5}></RateItemResult>
-                                    </div>
-                                </div>
+                                <Evaluate/>
                             </div>
                             <div className="wrap-comments">
                                 <CurrentUserComment/>
@@ -178,19 +167,6 @@ function Service({desc}) {
             <Image src={greenTick}></Image>
             <div>{desc}</div>
         </Space>    
-    )
-}
-
-function Destination({name, desc}) {
-    return(
-        <Collapse expandIconPosition="start" className="collapse-tour">
-            <Panel
-                header={name}
-                key={name}
-            >
-                <div>{desc}</div>
-            </Panel>
-        </Collapse>
     )
 }
 
