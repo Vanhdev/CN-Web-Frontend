@@ -7,8 +7,10 @@ import { RiCalendar2Fill } from "react-icons/ri";
 import Logo from "../../components/Logo";
 import background from "../../assets/images/LoginPageBackground.png";
 import "../../assets/fonts.css";
+import { useNavigate } from "react-router-dom";
 
 const SigninModal = () => {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const onFinish = () => {
       console.log(form.getFieldsValue());
@@ -151,7 +153,7 @@ const SigninModal = () => {
             </Col>
   
             <Col span={24} className="m-5 text-right">
-              <Button type="link" href="login">
+              <Button type="link" onClick={() => navigate("/login")}>
                 <Row
                   className="text-white underline"
                   style={{ fontFamily: "Signika" }}

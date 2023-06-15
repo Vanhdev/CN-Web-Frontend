@@ -5,8 +5,10 @@ import { IoMdLock } from "react-icons/io";
 import Logo from "../../components/Logo";
 import background from "../../assets/images/LoginPageBackground.png";
 import "../../assets/fonts.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = () => {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
     const onFinish = () => {
       console.log(form.getFieldsValue());
@@ -66,7 +68,7 @@ const LoginModal = () => {
             </Col>
   
             <Col span={24} className="m-5 text-right">
-              <Button type="link" href="register">
+              <Button type="link" onClick={() => navigate("/register")}>
                 <Row
                   className="text-white underline"
                   style={{ fontFamily: "Signika" }}
