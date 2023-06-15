@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import bg from "../../../../assets/images/alltour-bg.png"
+import bg from "../../assets/images/alltour-bg.png";
 import { Image, Row, Col, Button, Divider } from "antd";
-import "../../../../assets/fonts.css";
+import "../../assets/fonts.css";
 import { AiOutlineHeart, AiTwotoneCalendar } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
