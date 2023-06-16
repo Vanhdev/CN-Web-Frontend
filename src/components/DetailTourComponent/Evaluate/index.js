@@ -39,10 +39,10 @@ function Evaluate() {
                     <div>Give me some feedbacks, we give you satisfaction!</div>
                 </div>
                 <div>
-                    <RateItemResult label='Vị trí địa lý' value={position}></RateItemResult>
-                    <RateItemResult label='Dịch vụ' value={service}></RateItemResult>
-                    <RateItemResult label='Phòng ốc' value={room}></RateItemResult>
-                    <RateItemResult label='Giá cả' value={price}></RateItemResult>
+                    <RateItemResult label='Vị trí địa lý' rate={position}></RateItemResult>
+                    <RateItemResult label='Dịch vụ' rate={service}></RateItemResult>
+                    <RateItemResult label='Phòng ốc' rate={room}></RateItemResult>
+                    <RateItemResult label='Giá cả' rate={price}></RateItemResult>
                 </div>
             </div>
         </>    

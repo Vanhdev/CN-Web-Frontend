@@ -11,11 +11,10 @@ import timeToTravel from '../../assets/images/time-to-travel.svg';
 import letGoTravel from '../../assets/images/letGoTravel.svg';
 import greenTick from '../../assets/images/green-tick.svg';
 
-import AllComments from "../../components/Comments/AllComments";
 import BookTour from "../../components/BoxBookTour/BookTour";
-import CurrentUserComment from "../../components/Comments/CurrentUserComment";
 import Evaluate from "../../components/DetailTourComponent/Evaluate";
 import Destination from "../../components/DetailTourComponent/Destination";
+import CommentsTour from "../../components/CommentsTours";
 
 const { Panel } = Collapse;
 
@@ -131,12 +130,9 @@ function DetailTour() {
                             <div className="wrap-rate">
                                 <Evaluate/>
                             </div>
-                            <div className="wrap-comments">
-                                <CurrentUserComment/>
-                                <div className="all-comments">
-                                    <AllComments/>
-                                </div>
-                            </div>
+
+                            {/* all comments below */}
+                            <CommentsTour/>
                         </Col>
                         <Col span={8}>
                             <BookTour/>

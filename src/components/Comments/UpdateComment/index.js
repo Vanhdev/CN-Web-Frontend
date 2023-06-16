@@ -2,11 +2,12 @@ import { Avatar, Button, Input, Space, Rate, Spin } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from '../../../assets/images/main-avatar.svg';
-import { updateComment } from "../../../redux/commentSlice";
+// import { updateComment } from "../../../redux/commentSlice";
+import { updateCommentTour } from "../../../redux/commentsTourSlice";
 
 
 function UpdateComment(props) {
-    const {setShowUpdate, item} = props;
+    const {setShowUpdate, item, index} = props;
 
     const [positionValue, setPositionValue] = useState(item.positionValue);
     const [roomValue, setRoomValue] = useState(item.roomValue);
@@ -23,8 +24,9 @@ function UpdateComment(props) {
             priceValue: priceValue,
             serviceValue: serviceValue,
             comment: comment,
+            index: index
         }
-        dispatch(updateComment(newComment));
+        dispatch(updateCommentTour(newComment));
         setShowUpdate(false);
     }
 
@@ -33,7 +35,7 @@ function UpdateComment(props) {
             <div>
                 <div className="user-header-cmt margin25">
                     <AvatarPost avatar={avatar} name='Anh Leonard' date='12/04/2023'/>
-                    <Button type="primary" onClick={handleSaveComment}>Lưu lại</Button>
+                    <Button type="primary" onClick={handleSaveComment} style={{backgroundColor: "green"}}>Lưu lại</Button>
                 </div>
                 <Space className="client-evaluate">
                     <RateItemColumn label='Vị trí địa lý' value={positionValue} setValue={setPositionValue}/>
@@ -41,11 +43,11 @@ function UpdateComment(props) {
                     <RateItemColumn label='Dịch vụ' value={priceValue} setValue={setPriceValue}/>
                     <RateItemColumn label='Giá cả' value={serviceValue} setValue={setServiceValue}/>
                 </Space>
-                <div className="margin25">
+                <div className="margin25">   
                     {
                         !comment 
                         ? <Spin></Spin> 
-                        : <Input.TextArea style={{height: '100px'}} defaultValue={comment} onChange={(e) => setComment(e.target.value)}/>
+                        : <Input.TextArea style={{height: '100px'}} defaultValue={comment} value={comment} onChange={(e) => setComment(e.target.value)}/>
                     }
                 </div>
             </div>

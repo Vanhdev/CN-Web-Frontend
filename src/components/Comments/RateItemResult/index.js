@@ -1,15 +1,15 @@
 import { Rate } from "antd";
 
 function RateItemResult(props) {
-    const {label, value, setValue} = props;
+    const {label, setValue, rate} = props;
 
-    if(!value) {
+    if(!rate) {
         return(
             <div className="all-rate">
                 <div>{label}</div>
                 <div>
                     <Rate 
-                        allowHalf 
+                        allowHalf
                         style={{color: 'var(--green-color)'}}
                         onChange={(value) => setValue(value)}
                     ></Rate>
@@ -22,7 +22,7 @@ function RateItemResult(props) {
             <div>{label}</div>
             <div>
                 <Rate 
-                    value={value} 
+                    value={rate} 
                     allowHalf 
                     allowClear={false}
                     style={{color: 'var(--green-color)'}}

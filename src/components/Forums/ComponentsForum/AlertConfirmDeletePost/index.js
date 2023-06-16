@@ -18,7 +18,7 @@ function AlertConfirmDeletePost(){
         <Button type="primary" style={{backgroundColor: '#FF7F50'}} size="small" onClick={() => alert('oke delete')}>
           Xóa
         </Button>
-        <Button type="primary" size="small" onClick={() => api.destroy(key)}>
+        <Button type="primary" size="small" onClick={() => api.destroy(key)} style={{backgroundColor: "green"}}>
           Hủy bỏ
         </Button>
       </Space>

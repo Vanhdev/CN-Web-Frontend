@@ -40,7 +40,11 @@ function CloseItem({setShowAlert}) {
         setShowAlert(false);
     }
     return(
-        <Button size="small" type="primary" style={{width: 70}} onClick={handleCloseItem}>
+        <Button 
+        size="small"
+        type="primary"
+        style={{width: 70, backgroundColor: "blue"}} 
+        onClick={handleCloseItem}>
             Hủy bỏ
         </Button>
     )

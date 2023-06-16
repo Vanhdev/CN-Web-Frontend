@@ -10,7 +10,7 @@ function WrapComments(props) {
     return(
         <>
             {
-                showUpdate ? <UpdateComment setShowUpdate={setShowUpdate} item={item}/> : <UserComments setShowUpdate={setShowUpdate} item={item} index={index}/>
+                showUpdate ? <UpdateComment setShowUpdate={setShowUpdate} item={item} index={index}/> : <UserComments setShowUpdate={setShowUpdate} item={item} index={index}/>
             }
         </>
     )

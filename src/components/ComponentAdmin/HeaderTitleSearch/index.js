@@ -20,7 +20,7 @@ function HeaderTitleSearch(props) {
                                 style={{width: '200px'}}
                                 enterButton="Tìm"
                                 onChange={(e) => handleSearchText(e.target.value)}
-                                onSearch={(e) => handleSearchText(e.target.value)}
+                                // onSearch={(e) => handleSearchText(e.target.value)}
                             />
                         </div>
                     </div>

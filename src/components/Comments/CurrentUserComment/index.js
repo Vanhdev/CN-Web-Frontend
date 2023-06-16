@@ -24,6 +24,11 @@ function CurrentUserComment() {
             comment: comment,
         }
         dispatch(addComments(newComment));
+        setPositionValue(0);
+        setRoomValue(0);
+        setPriceValue(0);
+        setServiceValue(0);
+        setComment("");
     }
 
     return(
@@ -31,12 +36,12 @@ function CurrentUserComment() {
             <AvatarPost avatar={avatar} name='Anh Leonard' date='12/04/2023'/>
             <Space className="evaluate-rate">
                 <Space size={50}>
-                    <RateItemResult label={'Vị trí địa lý'} setValue={setPositionValue}/>
-                    <RateItemResult label={'Dịch vụ'} setValue={setServiceValue}/>
+                    <RateItemResult label={'Vị trí địa lý'} rate={positionValue} setValue={setPositionValue}/>
+                    <RateItemResult label={'Dịch vụ'} rate={serviceValue} setValue={setServiceValue}/>
                 </Space>
                 <Space size={50}>
-                    <RateItemResult label={'Phòng ốc'} setValue={setRoomValue}/>
-                    <RateItemResult label={'Giá cả'} setValue={setPriceValue}/>
+                    <RateItemResult label={'Phòng ốc'} rate={roomValue} setValue={setRoomValue}/>
+                    <RateItemResult label={'Giá cả'} rate={priceValue} setValue={setPriceValue}/>
                 </Space>
             </Space>
             <Form style={{width: '100%'}}>
@@ -45,9 +50,16 @@ function CurrentUserComment() {
                     bordered={false} 
                     className="user-input"
                     onChange={(e) => setComment(e.target.value)}
+                    value={comment}
                 ></Input>
                 <Divider style={{borderColor: '#000', marginTop: '5px'}}/>
-                <Button htmlType="button" type="primary" className="post-comment-button" onClick={hanlePostComment}>Đăng</Button>
+                <Button 
+                    htmlType="button" 
+                    type="primary" 
+                    className="post-comment-button" 
+                    onClick={hanlePostComment}
+                    style={{backgroundColor: "green"}}
+                >Đăng</Button>
             </Form>
         </>    
     )

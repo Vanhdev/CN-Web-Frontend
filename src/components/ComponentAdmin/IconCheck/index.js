@@ -6,9 +6,17 @@ function IconCheck(props) {
     const handleCheckPost = () => {
         message.success(`Đã duyệt bài "${post.title}"`);
     }
+
     return(
-        <Space size={3} onClick={handleCheckPost} style={{cursor: 'pointer'}}>
-            {icon} <span style={{color: 'var(--gray-color)', fontSize: '14px'}}>{text}</span>
+        <Space 
+            size={3} 
+            onClick={handleCheckPost} 
+            style={{cursor: 'pointer'}}
+            className="icon-text"
+            direction="row"
+        >
+            <span>{icon}</span>
+            <span style={{color: 'var(--gray-color)', fontSize: '14px'}}>{text}</span>
         </Space>
     )
 }

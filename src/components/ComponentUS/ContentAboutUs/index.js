@@ -3,6 +3,7 @@ import divideLine from '../../../assets/images/divide-line.svg';
 import AboutUsFooter from '../AboutUsFooter';
 import AboutUsStart from '../AboutUsStart';
 import AboutUsContent from '../AboutUsContent';
+import Footer from '../../Footer';
 
 function ContentAboutUs() {
     return(
