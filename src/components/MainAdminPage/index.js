@@ -8,7 +8,7 @@ function MainAdminPage() {
     return(
         <div className="admin-page">
             <HeaderWhite/>
-            <Image src={adminImage} preview={false}/>
+            <Image src={adminImage} width={"100%"} preview={false}/>
             <HeaderOption/>
             <AdminContent/>
         </div>    
