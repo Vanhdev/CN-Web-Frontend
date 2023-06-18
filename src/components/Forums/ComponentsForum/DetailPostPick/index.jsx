@@ -1,5 +1,5 @@
 import AvatarPost from "../../../AvatarPost";
-import avatar from '../../../../assets/images/main-avatar.svg';
+import avatar from '../../../../assets/images/main-avatar.png';
 import { Image, Space, Spin, Tag } from "antd";
 import './index.css';
 import IconText from "../IconText";

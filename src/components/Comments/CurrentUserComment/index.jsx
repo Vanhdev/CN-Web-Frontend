@@ -1,7 +1,7 @@
 import { Button, Divider, Form, Input, Space, message } from "antd";
 import AvatarPost from "../../AvatarPost";
 import RateItemResult from "../RateItemResult";
-import avatar from '../../../assets/images/main-avatar.svg';
+import avatar from '../../../assets/images/main-avatar.png';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addComments } from "../../../redux/commentsTourSlice";

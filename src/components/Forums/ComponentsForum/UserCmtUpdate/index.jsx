@@ -1,5 +1,5 @@
 import { Button, Input } from 'antd';
-import avatar from '../../../../assets/images/main-avatar.svg';
+import avatar from '../../../../assets/images/main-avatar.png';
 import AvatarPost from '../../../AvatarPost';
 import { useDispatch } from 'react-redux';
 import { updateCommentPost } from '../../../../redux/commentPostSlice';

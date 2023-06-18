@@ -7,8 +7,8 @@ import price from '../../assets/images/price.svg';
 import time from '../../assets/images/time.svg';
 import category from '../../assets/images/category.svg';
 import person from '../../assets/images/person.svg';
-import timeToTravel from '../../assets/images/time-to-travel.svg';
-import letGoTravel from '../../assets/images/letGoTravel.svg';
+import timeToTravel from '../../assets/images/time-to-travel.jpg';
+import letGoTravel from '../../assets/images/letGoTravel.jpg';
 import greenTick from '../../assets/images/green-tick.svg';
 
 import BookTour from "../../components/BoxBookTour/BookTour";
@@ -36,7 +36,7 @@ function DetailTour() {
                     <div>
                         <div className="all-title-header">
                             <div>
-                                <h2>Waterfalls, Geysers And Glacier</h2>
+                                <h1>Waterfalls, Geysers And Glacier</h1>
                                 <Space className="address" size={8}>
                                     <Image src={location}></Image>
                                     <div style={{color: 'var(--gray-color)', fontSize: '18px'}}>Warsaw, Poland</div>

@@ -1,6 +1,6 @@
 import { Typography } from "antd";
 import AvatarPost from "../../../AvatarPost";
-import avatar from '../../../../assets/images/main-avatar.svg';
+import avatar from '../../../../assets/images/main-avatar.png';
 
 function ClientCmtPost() {
     return(

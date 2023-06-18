@@ -1,6 +1,9 @@
+
 function ManageClient() {
     return(
-        <>ManageClient</>
+        <>
+            ManageClient
+        </>
     )
 }
 

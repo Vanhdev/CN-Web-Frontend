@@ -1,6 +1,6 @@
 function AboutUsFooter() {
     return(
-        <>
+        <div>
             <div 
                 className='about-big-title'
                 style={{textAlign: 'center', margin: "20px 0"}}
@@ -16,7 +16,7 @@ function AboutUsFooter() {
                     </strong>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

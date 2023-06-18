@@ -1,5 +1,5 @@
 import { Avatar, Button, Space } from "antd";
-import avatar from '../../../assets/images/main-avatar.svg';
+import avatar from '../../../assets/images/main-avatar.png';
 import Logo from "../../Logo";
 import { useNavigate } from "react-router-dom";
 import './index.css';

@@ -1,7 +1,7 @@
 import HelpUs from "../HelpUs";
-import aboutUs from '../../../assets/images/about-us.svg';
-import aboutUs1 from '../../../assets/images/about-us-1.svg';
-import aboutUs2 from '../../../assets/images/about-us-2.svg';
+import aboutUs from '../../../assets/images/about-us.jpg';
+import aboutUs1 from '../../../assets/images/about-us-1.jpg';
+import aboutUs2 from '../../../assets/images/about-us-2.jpg';
 
 
 function AboutUsContent() {

@@ -1,8 +1,7 @@
 import { Avatar, Button, Input, Space, Rate, Spin } from "antd";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import avatar from '../../../assets/images/main-avatar.svg';
-// import { updateComment } from "../../../redux/commentSlice";
+import avatar from '../../../assets/images/main-avatar.png';
 import { updateCommentTour } from "../../../redux/commentsTourSlice";
 
 

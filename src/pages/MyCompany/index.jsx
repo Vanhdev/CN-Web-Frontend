@@ -1,6 +1,7 @@
 import ImageUs from "../../components/ComponentUS/ImageUs";
 import HeaderUs from "../../components/ComponentUS/HeaderUs";
 import MyCompanyRoutes from "../../routes/MyCompanyRoutes";
+import FooterCompany from "../../components/FooterCompany";
 
 function MyCompany() {
     return(
@@ -8,6 +9,7 @@ function MyCompany() {
             <HeaderUs/>
             <ImageUs/>
             <MyCompanyRoutes/>
+            <FooterCompany/>
         </div>
     )
 }

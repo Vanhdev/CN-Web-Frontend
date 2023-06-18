@@ -1,8 +1,8 @@
 import { Anchor, Avatar, Button, Image, Space } from "antd";
 import Logo from "../Logo";
 import './index.css';
-import blueRiver from "../../assets/images/blue-river.png";
-import avatar from "../../assets/images/main-avatar.svg";
+import blueRiver from "../../assets/images/blue-river.jpg";
+import avatar from "../../assets/images/main-avatar.png";
 import { useNavigate } from "react-router-dom";
 
 function BlueRiverHeader() {

@@ -2,7 +2,7 @@ import { Space, Typography } from "antd";
 import AvatarPost from "../../AvatarPost";
 import RateItemColumn from "../../RateItemColumn";
 
-import avatar from '../../../assets/images/main-avatar.svg';
+import avatar from '../../../assets/images/main-avatar.png';
 
 function ClientComments() {
     return(

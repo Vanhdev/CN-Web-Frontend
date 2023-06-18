@@ -3,10 +3,9 @@ import AvatarPost from "../../AvatarPost";
 import DropdownUserOption from "../../DropdownUserOption";
 import RateItemColumn from "../../RateItemColumn";
 
-import avatar from '../../../assets/images/main-avatar.svg';
+import avatar from '../../../assets/images/main-avatar.png';
 import { Space, Typography } from "antd";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 
 function UserComments(props) {

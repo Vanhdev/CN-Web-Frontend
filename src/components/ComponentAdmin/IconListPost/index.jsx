@@ -1,7 +1,7 @@
 import { Space } from "antd";
 import IconText from "../../Forums/ComponentsForum/IconText";
 import AlertConfirmDeletePost from "../../Forums/ComponentsForum/AlertConfirmDeletePost";
-import {EyeOutlined, HeartFilled} from '@ant-design/icons';
+import { RemoveRedEyeOutlined, Favorite } from '@mui/icons-material';
 
 function IconListPost(props) {
     const {post} = props;
@@ -9,8 +9,8 @@ function IconListPost(props) {
     return(
         <div style={{marginRight: '25px'}}>
             <Space direction='vertical'>
-                <IconText icon={<EyeOutlined style={{color: 'var(--blue-color)'}}/>} text={`${post.userId}`}/>
-                <IconText icon={<HeartFilled style={{color: 'var(--pink-color)'}}/>} text={`${post.reactions}`}/>
+                <IconText icon={<RemoveRedEyeOutlined fontSize="small" style={{color: 'var(--blue-color)'}}/>} text={`${post.userId}`}/>
+                <IconText icon={<Favorite fontSize="small" style={{color: 'var(--pink-color)'}}/>} text={`${post.reactions}`}/>
                 <AlertConfirmDeletePost/>
             </Space>
         </div>

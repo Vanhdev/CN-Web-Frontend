@@ -1,5 +1,5 @@
 import { Image } from "antd";
-import compoUs from "../../../assets/images/compo-us.svg";
+import compoUs from "../../../assets/images/compo-us.jpg";
 
 function ImageUs() {
     const acme = {

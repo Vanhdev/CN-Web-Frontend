@@ -1,6 +1,6 @@
 import { Space } from "antd";
 import AlertConfirmDeletePost from "../../Forums/ComponentsForum/AlertConfirmDeletePost";
-import {CheckCircleFilled} from '@ant-design/icons';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import IconCheck from "../IconCheck";
 
 function IconCheckPost(props) {
@@ -9,7 +9,7 @@ function IconCheckPost(props) {
     return(
         <div style={{marginRight: '25px'}}>
             <Space direction='vertical'>
-                <IconCheck icon={<CheckCircleFilled style={{color: 'green'}}/>} text="Duyệt bài" post={post}/>
+                <IconCheck icon={<CheckCircleIcon fontSize="small" style={{color: 'green'}}/>} text="Duyệt bài" post={post}/>
                 <AlertConfirmDeletePost/>
             </Space>
         </div>

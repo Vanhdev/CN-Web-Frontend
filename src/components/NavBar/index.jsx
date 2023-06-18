@@ -1,8 +1,6 @@
 import { Avatar, Button, Space, Menu, Divider } from 'antd';
-import BlueRiverHeader from '../BlueRiverHeader';
-import avatar from '../../assets/images/main-avatar.svg';
+import avatar from '../../assets/images/main-avatar.png';
 import './index.css';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 

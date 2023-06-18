@@ -1,7 +1,7 @@
 import { Divider, Space, Tag, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import AvatarPost from '../AvatarPost';
-import avatar from '../../assets/images/main-avatar.svg';
+import avatar from '../../assets/images/main-avatar.png';
 
 function ContentSinglePost(props) {
     const {post} = props;

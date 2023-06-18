@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import avatar from '../../../../assets/images/main-avatar.svg';
+import avatar from '../../../../assets/images/main-avatar.png';
 import { Typography } from "antd";
 import AlertDelete from "../../../AlertDelete";
 import DropdownUserOption from "../../../DropdownUserOption";

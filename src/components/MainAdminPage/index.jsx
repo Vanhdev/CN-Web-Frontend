@@ -1,7 +1,7 @@
 import { Image } from "antd";
 import AdminContent from "../../pages/AdminContent";
 import HeaderWhite from "../ComponentAdmin/HeaderWhite";
-import adminImage from '../../assets/images/admin-background.png';
+import adminImage from '../../assets/images/admin-background.jpg';
 import HeaderOption from "../ComponentAdmin/HeaderOption";
 
 function MainAdminPage() {

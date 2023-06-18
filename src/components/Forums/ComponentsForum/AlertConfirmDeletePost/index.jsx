@@ -1,6 +1,7 @@
 import { Button, notification, Space } from 'antd';
 import IconButtonDelete from '../IconButtonDelete';
 import {DeleteFilled} from '@ant-design/icons';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const close = () => {
   console.log(
@@ -34,7 +35,7 @@ function AlertConfirmDeletePost(){
   return (
     <>
       {contextHolder}
-      <IconButtonDelete icon={<DeleteFilled style={{color: '#FF7F50'}}/>} text="Xóa" onClick={openNotification}/>
+      <IconButtonDelete icon={<DeleteIcon fontSize='small' style={{color: '#FF7F50'}}/>} text="Xóa" onClick={openNotification}/>
     </>
   );
 };
