@@ -1,6 +1,5 @@
 import { Button, Divider, Form, Input, Row } from "antd";
 import React, { useState } from "react";
-import "./styles.css";
 import "../../../../assets/fonts.css";
 import { BsFillCheckCircleFill, BsFillDashCircleFill, BsPencil } from "react-icons/bs";
 
@@ -92,8 +91,8 @@ const AddDestination = () => {
 
     const handleDeleteDes = (index) => {
         const newDesList = [...desList];
-        console.log(newDesList);
-        setDesList(newDesList.splice(index, 1));
+        newDesList.splice(index, 1);
+        setDesList(newDesList);
     }
 
     const handleSaveDes = (index, title, description) => {
