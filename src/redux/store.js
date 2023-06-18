@@ -8,6 +8,8 @@ import numberClickReducer from './numberClickSlice';
 import adminPostReducer from './adminPostSlice';
 import searchTextReducer from "./searchTextSlice";
 import commentsTourReducer from './commentsTourSlice';
+import authReducer from './authSlice';
+import postReducer from './postSlice';
 
 export default configureStore({
     reducer: {
@@ -20,5 +22,7 @@ export default configureStore({
         adminPost: adminPostReducer,
         searchText: searchTextReducer,
         commentsTour: commentsTourReducer,
+        auth: authReducer,
+        post: postReducer,
     }
 })

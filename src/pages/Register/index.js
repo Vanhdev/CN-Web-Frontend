@@ -8,9 +8,20 @@ import Logo from "../../components/Logo";
 import background from "../../assets/images/LoginPageBackground.jpg";
 import "../../assets/fonts.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { registerUser } from "../../API";
 
 const SigninModal = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [date, setDate] = useState('');
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
     const [form] = Form.useForm();
     const onFinish = () => {
       console.log(form.getFieldsValue());
@@ -19,6 +30,13 @@ const SigninModal = () => {
     const onFinishFailed = (err) => {
       console.log("Error: ", err);
     };
+
+    const handleRegister = async (e) => {
+      e.preventDefault();
+      const newUser = { name, email, password, phoneNumber, date };
+      registerUser(newUser, dispatch, navigate);
+    };
+
     return (
       <>
         <Col span={24} className="mb-7 text-3xl text-center text-white">
@@ -38,6 +56,7 @@ const SigninModal = () => {
                         placeholder="Tên"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </Form.Item>
                   </Col>
@@ -53,6 +72,7 @@ const SigninModal = () => {
                         placeholder="Ngày sinh"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
+                        onChange={(e) => setDate(e.target.value)}
                       />
                     </Form.Item>
                   </Col>
@@ -68,12 +88,13 @@ const SigninModal = () => {
                         placeholder="Số điện thoại"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                       />
                     </Form.Item>
                   </Col>
                 </Row>
   
-                <Row className="py-2 m-5 border-b-2">
+                {/* <Row className="py-2 m-5 border-b-2">
                   <Col span={2} className="flex justify-center items-center">
                     <MdLocationOn color="white" size={25} />
                   </Col>
@@ -86,7 +107,7 @@ const SigninModal = () => {
                       />
                     </Form.Item>
                   </Col>
-                </Row>
+                </Row> */}
               </Col>
   
               <Col span={10} offset={4}>
@@ -100,6 +121,7 @@ const SigninModal = () => {
                         placeholder="Email"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </Form.Item>
                   </Col>
@@ -115,6 +137,7 @@ const SigninModal = () => {
                         placeholder="Mật khẩu"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </Form.Item>
                   </Col>
@@ -145,6 +168,7 @@ const SigninModal = () => {
                     htmlType="submit"
                     className="w-full h-12 rounded-none border-none"
                     style={{ backgroundColor: "#5A62AA" }}
+                    onClick={handleRegister}
                   >
                     Đăng ký
                   </Button>

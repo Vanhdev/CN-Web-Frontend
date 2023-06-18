@@ -7,9 +7,10 @@ import TourBox from "../../components/TourBox";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import PerfectDestination from "./components/PerfectDestination";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const navigate= useNavigate();
+
   return <>
     <Row className="w-full relative">
       <Image src={bg} width={"100%"} preview={false} />

@@ -10,10 +10,6 @@ function NewPost() {
                 <div style={{margin: '20px 0', fontSize: '18px'}}>Make New Post</div>
                 <MakeNewPost/>
             </div>
-            {/* <div className="list-new-posts">
-                <div style={{margin: '20px 0', fontSize: '18px'}}>Bài viết mới nhất</div>
-                <ClientPost/>
-            </div> */}
         </div>
     )
 }

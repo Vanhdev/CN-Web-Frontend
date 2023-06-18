@@ -1,10 +1,10 @@
 import { Button, Col, Input, Modal, Row, Space, Upload } from "antd";
 import './index.css';
 import { useState } from "react";
-import { PlusOutlined } from '@ant-design/icons';
 import UploadImage from "../UploadImage";
 import { useDispatch, useSelector } from "react-redux";
-import { updatePost } from "../../../../redux/newPostSlice";
+import { useNavigate } from "react-router-dom";
+import { createNewPost } from "../../../../API";
 
 function MakeNewPost() {
     const [namePost, setNamePost] = useState('');
@@ -13,17 +13,22 @@ function MakeNewPost() {
     const [fullDesc, setFullDesc] = useState('');
     const [imageList, setImageList] = useState([]);
 
+    const user = useSelector( state => state.auth.login?.currentUser);
+    console.log("current id of user: ", user.id);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleNewPost = () => {
         const newPost = {
-            namePost: namePost,
-            topicPost: topicPost,
-            shortDesc: shortDesc,
-            fullDesc: fullDesc,
+            user_id: user.id,
+            title: namePost,
+            // topicPost: topicPost,
+            // shortDesc: shortDesc,
+            content: fullDesc,
             // imageList: imageList,
         }
-        dispatch(updatePost(newPost));
+        // createNewPost(newPost, dispatch, navigate);
     }
 
     return(

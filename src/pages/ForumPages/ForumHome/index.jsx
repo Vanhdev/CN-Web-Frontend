@@ -10,6 +10,9 @@ function ForumHome() {
     const data = useSelector(state => state.searchText);
     const textSearch = data.text;
 
+    const allPosts = useSelector((state) => state.post.allPosts?.listPosts);
+    console.log("allPost: ", allPosts);
+
     const [clientPosts, setClientPosts] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -42,6 +45,8 @@ function ForumHome() {
             <Spin></Spin>
         )
     }
+
+    console.log(clientPosts);
 
 
     return(

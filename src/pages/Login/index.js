@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Button, Form, Row, Input, Col } from "antd";
 import { MdAttachEmail } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
@@ -6,9 +6,17 @@ import Logo from "../../components/Logo";
 import background from "../../assets/images/LoginPageBackground.jpg";
 import "../../assets/fonts.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { loginUser } from "../../API";
+import { useDispatch } from "react-redux";
 
 const LoginModal = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [form] = Form.useForm();
     const onFinish = () => {
       console.log(form.getFieldsValue());
@@ -17,6 +25,15 @@ const LoginModal = () => {
     const onFinishFailed = (err) => {
       console.log("Error: ", err);
     };
+
+    const handleLogin = (e) => {
+      e.preventDefault();
+      const user = {
+        email: email,
+        password: password
+      }
+      loginUser(user, dispatch, navigate);
+    }
     return (
       <>
         <Col span={24} className="mb-7 text-3xl text-center text-white">
@@ -34,6 +51,7 @@ const LoginModal = () => {
                     placeholder="Email"
                     className="h-full text-white bg-transparent border-none placeholder:text-white"
                     size="large"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Form.Item>
               </Col>
@@ -49,6 +67,7 @@ const LoginModal = () => {
                     placeholder="Mật khẩu"
                     className="h-full text-white bg-transparent border-none placeholder:text-white"
                     size="large"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Item>
               </Col>
@@ -61,6 +80,7 @@ const LoginModal = () => {
                   htmlType="submit"
                   className="w-full h-12 rounded-none border-none"
                   style={{ backgroundColor: "#5A62AA" }}
+                  onClick={handleLogin}
                 >
                   Đăng nhập
                 </Button>
