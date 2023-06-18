@@ -12,7 +12,7 @@ function AllComments() {
             <div className="margin50">Bình luận</div>
             {
                 userValues.map( (item,index) => 
-                    <WrapComments index={index} item={item}/>
+                    <WrapComments key={index} index={index} item={item}/>
                 )
             }
         </>
