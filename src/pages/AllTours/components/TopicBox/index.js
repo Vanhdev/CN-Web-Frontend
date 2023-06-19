@@ -19,7 +19,7 @@ const TopicBox = () => {
             <Row className="w-full">
                 {Object.keys(topicList).map((key) => 
                     <>
-                        <Col span={4} className="flex justify-center px-2 py-1">
+                        <Col span={4} className="flex justify-center px-2 py-1" key={key}>
                             <Button className="border-none rounded-full hover:bg-slate-100" style={{width: "100px", height: "100px"}} onClick={() => setTopic(key)}>
                                 <Row className="w-full flex justify-center">
                                     {key === "sea" ? <TbBeach color={topic === key ? "#4B59D7" : "black"} size={30} /> : null}
