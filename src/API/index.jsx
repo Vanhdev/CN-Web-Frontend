@@ -10,7 +10,7 @@ export const getAllPosts = () => {
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post(`http://localhost:3003/auth/login`, user);
+        const res = await axios.post(`http://localhost:8086/auth/login`, user);
         dispatch(loginSuccess(res.data.user));
         if(res.data.user.email === "admin@gmail.com") {
             navigate('/admin');
@@ -27,7 +27,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
-        await axios.post(`http://localhost:3003/auth/register`, user);
+        await axios.post(`http://localhost:8086/auth/register`, user);
         dispatch(registerSuccess());
         navigate('/login');
     } catch (error) {
@@ -37,7 +37,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 
 // export const createNewPost = async (new_post, dispatch, navigate) => {
 //     try {
-//         const res = await axios.post(`http://localhost:3003/users/add-post`, new_post);
+//         const res = await axios.post(`http://localhost:8086/users/add-post`, new_post);
 //         console.log(res);
 //         // dispatch(createPost(res.data.newPost));
 //         navigate('/forum');
@@ -50,7 +50,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 // export const takeAllPosts = async (accessToken, dispatch, navigate) => {
 //     dispatch(getAllPostStart());
 //     try {
-//       const res = await axios.get(`http://localhost:3003/users/get-post?id=all`, {
+//       const res = await axios.get(`http://localhost:8086/users/get-post?id=all`, {
 //         headers: { token: `Bearer ${accessToken}` },
 //       });
 //       dispatch(getAllPostSuccess(res.data));

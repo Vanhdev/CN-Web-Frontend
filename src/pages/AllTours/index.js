@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TopBar from "./components/TopBar";
-import bg from "../../assets/images/alltour-bg.png";
+import bg from "../../assets/images/alltour-bg.jpg";
 import { Image, Row, Col, Button, Pagination } from "antd";
 import "../../assets/fonts.css";
 import TourBox from "../../components/TourBox";
