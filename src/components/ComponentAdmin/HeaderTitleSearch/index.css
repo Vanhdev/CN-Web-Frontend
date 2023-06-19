@@ -15,3 +15,7 @@
     justify-content: space-between;
     margin-right: 53px;
 }
+
+.search-post .ant-input-search-button{ 
+    background-color: green !important;
+}
