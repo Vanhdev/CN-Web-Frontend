@@ -4,10 +4,12 @@ import ManageForumRoutes from "../ManageForumRoutes";
 import ManageClient from '../../pages/SinglePageAdminManager/ManageClient';
 import ManageQuestion from '../../pages/SinglePageAdminManager/ManageQuestion';
 import ManageStatistic from '../../pages/SinglePageAdminManager/ManageStatistic';
+import AdminHomePage from "../../pages/SinglePageAdminManager/HomePage";
 
 function ManageAdminRoutes() {
     return(
         <Routes>
+            <Route path="/" element={<AdminHomePage />}></Route>
             <Route path="/manage-tour/*" element={<ManageTourRoutes/>}></Route>
             <Route path="/manage-forum/*" element={<ManageForumRoutes/>}></Route>
             <Route path="/manage-client" element={<ManageClient/>}></Route>
