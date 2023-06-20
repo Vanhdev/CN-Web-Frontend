@@ -8,6 +8,8 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaCamera } from "react-icons/fa";
 
+const domain = "http://localhost:8086/";
+
 const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
   let ratingArr = [];
   for (let i = 0; i < 5; i++) {
@@ -44,15 +46,17 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
 
 const TourBox = (props) => {
   const { tour } = props;
-  console.log(tour);
+  const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
+  console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
   return <>
     <Col span={8} className="p-8">
       <Row className="w-full relative flex justify-center">
         <Image 
-          src={bg} 
-          width={"100%"} 
+          src={imageUrl} 
+          width={"100%"}
+          height={"200px"} 
           className="rounded-2xl" 
           onMouseEnter={() => setHover(true)} 
           onMouseLeave={() => setHover(false)}
@@ -82,7 +86,7 @@ const TourBox = (props) => {
               <AiTwotoneCalendar size={20} />
             </Col>
             <Col offset={1} style={{fontFamily: "Signika"}}>
-              {tour?.duration / 100} ngày
+              {tour?.duration} ngày
             </Col>
           </Row>
           {hover ? 
@@ -100,7 +104,7 @@ const TourBox = (props) => {
           <Col span={24} style={{fontFamily: "Signika", fontSize: 23}}>{tour?.name ?? "asd"}</Col>
           <Row className="w-full">
             <Col className="flex items-center"><MdOutlineLocationOn color="#ABB8C3" size={18} /></Col>
-            <Col style={{fontFamily: "Signika", fontSize: 18, color: "#ABB8C3"}}>Warsaw, Poland</Col>
+            <Col style={{fontFamily: "Signika", fontSize: 18, color: "#ABB8C3"}}>{tour?.place.name}</Col>
           </Row>
           <Divider className="my-3 w-full" color={"#ABB8C3"} />
           <Row className="w-full flex justify-between">

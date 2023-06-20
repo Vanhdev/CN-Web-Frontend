@@ -30,7 +30,7 @@ function UploadImage (props) {
     };
 
     const handleChange = (e) => {
-        console.log(e.fileList);
+        // console.log(e.fileList);
     }
 
     const uploadButton = (

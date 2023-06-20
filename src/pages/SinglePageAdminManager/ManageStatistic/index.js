@@ -19,7 +19,7 @@ const ManageStatistic = () => {
                     <Row className="flex justify-center pb-3 text-xl border-solid border-x-2" style={{fontFamily: "Signika"}}>Tổng tour được đặt</Row>
                     <Row 
                         className="flex items-center justify-center text-white text-6xl" 
-                        style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
+                        style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
                         1204
                     </Row>
@@ -37,7 +37,7 @@ const ManageStatistic = () => {
                     <Row className="w-full flex justify-center pb-3 text-xl border-solid border-x-2" style={{fontFamily: "Signika"}}>Tổng doanh thu</Row>
                     <Row 
                         className="w-full flex items-center justify-center text-white text-6xl" 
-                        style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
+                        style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
                         $200.00
                     </Row>

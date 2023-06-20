@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 function MainAdminPage() {
     const navigate = useNavigate();
     const user = useSelector((state) => state.auth.login?.currentUser);
-    console.log({user})
+    // console.log({user})
 
     useEffect(() => {
         if (!user) {
