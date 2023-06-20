@@ -16,7 +16,7 @@ const commentsTourSlice = createSlice({
             }
         },
         updateCommentTour: (state, action) => {
-            console.log(state.comments);
+            // console.log(state.comments);
             state.comments.map((item, id) => {
                 if(id === action.payload.index) {
                     item.positionValue = action.payload.positionValue;

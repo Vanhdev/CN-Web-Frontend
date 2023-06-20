@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TopBar from "./components/TopBar";
 import bg from "../../assets/images/alltour-bg.jpg";
+import bgLogin from "../../assets/images/alltour-bg-login.jpg";
 import { Image, Row, Col, Button, Pagination } from "antd";
 import "../../assets/fonts.css";
 import TourBox from "../../components/TourBox";
@@ -9,15 +10,18 @@ import Footer from "../../components/Footer";
 import PerfectDestination from "./components/PerfectDestination";
 import TopicBox from "./components/TopicBox";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
-import axios from "axios";
+import { getAllTour } from "../../API";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const navigate= useNavigate();
   const [tourList, setTourList] = useState([]);
   const [pos, setPos] = useState(0);
 
+  const currentUser = useSelector(state => state.auth.login.currentUser);
+
   useEffect(() => {
-    axios.get("http://localhost:8086/admin/get-tour?id=all").then(res => setTourList(res.data));
+    getAllTour().then(res => setTourList(res.data));
   },[]);
 
   const itemRender = (_, type, originalElement) => {
@@ -32,8 +36,8 @@ const HomePage = () => {
 
   return <>
     <Row className="w-full relative">
-      <Image src={bg} width={"100%"} preview={false} />
-      <TopBar className="absolute top-0 left-0 right-0 mt-3" />
+      <Image src={currentUser ? bgLogin : bg} width={"100%"} preview={false} />
+      <TopBar className="absolute top-0 left-0 right-0 mt-3" currentUser={currentUser} />
     </Row>
     <TopicBox />
     <Row className="w-full p-5">
@@ -59,9 +63,9 @@ const HomePage = () => {
     <Row className="w-full p-5">
       <Col span={24} className="text-xl" style={{fontFamily: "Signika"}}>Điểm đến mới cập nhật!</Col>
       <Row className="w-full">
-        <TourBox tour={tourList[pos]} />
-        <TourBox tour={tourList[pos]} />
-        <TourBox tour={tourList[pos]} />
+        {tourList.length > 2 ? <TourBox tour={tourList[tourList.length - 3]} /> : null}
+        {tourList.length > 1 ? <TourBox tour={tourList[tourList.length - 2]} /> : null}
+        {tourList.length > 0 ? <TourBox tour={tourList[tourList.length - 1]} /> : null}
       </Row>
     </Row>
     <PerfectDestination />

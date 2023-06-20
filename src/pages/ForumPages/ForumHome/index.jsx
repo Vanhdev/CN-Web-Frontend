@@ -11,7 +11,7 @@ function ForumHome() {
     const textSearch = data.text;
 
     const allPosts = useSelector((state) => state.post.allPosts?.listPosts);
-    console.log("allPost: ", allPosts);
+    // console.log("allPost: ", allPosts);
 
     const [clientPosts, setClientPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ function ForumHome() {
         )
     }
 
-    console.log(clientPosts);
+    // console.log(clientPosts);
 
 
     return(

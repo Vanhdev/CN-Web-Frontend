@@ -17,7 +17,7 @@ const DestinationBox = (props) => {
     const handleSave = () => {
         const title = desForm.getFieldValue("title");
         const description = desForm.getFieldValue("description");
-        console.log(title);
+        // console.log(title);
         handleSaveDes(index, title, description);
         setIsEdit(false);
     }
@@ -80,7 +80,7 @@ const AddDestination = () => {
 
     const handleAddDes = () => {
         const value = addForm.getFieldsValue();
-        console.log(value);
+        // console.log(value);
         setDesList([...desList,
             {
                 ...value
@@ -96,7 +96,7 @@ const AddDestination = () => {
     }
 
     const handleSaveDes = (index, title, description) => {
-        console.log(index, title, description);
+        // console.log(index, title, description);
         const newDesList = [...desList];
         newDesList[index].title = title;
         newDesList[index].description = description;
