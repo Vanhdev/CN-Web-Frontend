@@ -15,10 +15,13 @@ import BookTour from "../../components/BoxBookTour/BookTour";
 import Evaluate from "../../components/DetailTourComponent/Evaluate";
 import Destination from "../../components/DetailTourComponent/Destination";
 import CommentsTour from "../../components/CommentsTours";
+import { useSelector } from "react-redux";
 
 const { Panel } = Collapse;
 
-function DetailTour() {
+const DetailTour = () => {
+
+    const currentUser = useSelector(state => state.auth.login.currentUser);
     
     const contentStyle = {
         height: '180px',
@@ -30,15 +33,15 @@ function DetailTour() {
 
     return(
         <div className="detailTour">
-            <BlueRiverHeader></BlueRiverHeader>
+            <BlueRiverHeader currentUser={currentUser}></BlueRiverHeader>
             <div className="detail-tour-container">
                 <div className="detail-tour-header">
                     <div>
                         <div className="all-title-header">
                             <div>
                                 <h1>Waterfalls, Geysers And Glacier</h1>
-                                <Space className="address" size={8}>
-                                    <Image src={location}></Image>
+                                <Space className="address w-full" size={8}>
+                                    <Image src={location} width={"100%"}></Image>
                                     <div style={{color: 'var(--gray-color)', fontSize: '18px'}}>Warsaw, Poland</div>
                                 </Space>
                             </div>

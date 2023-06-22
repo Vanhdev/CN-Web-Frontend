@@ -35,9 +35,9 @@ const TopBar = (props) => {
           <Col span={6} className="flex justify-end items-center">
             <Button className="border-none text-white text-l" onClick={() => navigate("/company/about-us")}>{currentUser.name}'s Tours</Button>
             <Row className="bg-white h-5" style={{width: "1px"}}></Row>
-            <Button className="border-none text-white text-l" onClick={() => navigate("/login")}>Forums</Button>
+            <Button className="border-none text-white text-l" onClick={() => navigate("/forum")}>Forums</Button>
             <Row className="bg-white h-5" style={{width: "1px"}}></Row>
-            <Button className="border-none text-white text-l" onClick={() => navigate("/register")}>Q & A</Button>
+            <Button className="border-none text-white text-l" onClick={() => navigate("/ask-something")}>Q & A</Button>
             <Row className="bg-white h-5" style={{width: "1px"}}></Row>
             <Button className="border-none" onClick={() => dispatch(logout())}><TbLogout color="white" /></Button>
           </Col>  

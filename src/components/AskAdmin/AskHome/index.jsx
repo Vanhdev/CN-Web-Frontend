@@ -2,11 +2,13 @@ import BlueRiverHeader from "../../BlueRiverHeader";
 import AllQuestions from "../AskComponents/AllQuestions";
 import AskBox from "../AskComponents/AskBox";
 import AskHeader from "../AskComponents/AskHeader";
+import { useSelector } from "react-redux";
 
 function AskHome() {
+    const currentUser = useSelector(state => state.auth.login.currentUser);
     return(
         <>  
-            <BlueRiverHeader/>
+            <BlueRiverHeader currentUser={currentUser} />
             <div style={{padding: ' 40px 60px'}}>
                 <AskHeader/>
                 <div style={{width: '60%', margin: '0 auto'}}>

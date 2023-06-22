@@ -4,9 +4,11 @@ import './index.css';
 import blueRiver from "../../assets/images/blue-river.jpg";
 import avatar from "../../assets/images/main-avatar.png";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function BlueRiverHeader() {
+const BlueRiverHeader = (props) => {
     const navigate = useNavigate();
+    const { currentUser } = props;
 
     const handleAsking = () => {
         navigate('/ask-something');
@@ -23,6 +25,7 @@ function BlueRiverHeader() {
             <Image 
                 src={blueRiver}
                 preview={false}
+                width={"100%"}
             ></Image>
             <div className="wrap-header-container">
                 <div className='header-container'>
@@ -31,11 +34,25 @@ function BlueRiverHeader() {
                         <Space size={15}>
                             <Button type="link" onClick={handleAsking} className="button">Q & A</Button>                  
                             <Button type="link" onClick={handleForum} className="button">Forum</Button>                  
-                            <Button type="link" className="button">My Tours</Button>                  
+                            {
+                                currentUser
+                                ?
+                                    <Button type="link" className="button">My Tours</Button>                  
+                                :
+                                    <Button type="link" className="button" onClick={() => navigate("/login")}>Login</Button>
+                            }
                         </Space>
                         <Space size={-15}>
-                            <Avatar src={avatar} size={50} className="avatar"></Avatar>
-                            <Button type="text" className="name" onClick={handlePersonal}>Anh Leonard</Button>
+                            {
+                                currentUser 
+                                ? 
+                                <>
+                                    <Avatar src={avatar} size={50} className="avatar"></Avatar>
+                                    <Button type="text" className="name" onClick={handlePersonal}>{currentUser?.name}</Button>
+                                </>
+                                : 
+                                null
+                            }
                         </Space>
                     </Space>
                 </div>

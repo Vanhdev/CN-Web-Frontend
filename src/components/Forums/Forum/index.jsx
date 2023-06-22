@@ -15,6 +15,7 @@ function Forum() {
     //         navigate('/login');
     //     }
     // }, []);
+    const currentUser = useSelector(state => state.auth.login.currentUser);
 
     return(
         <>
@@ -31,7 +32,7 @@ function Forum() {
                 !user && <Spin></Spin>
             } */}
             <div>  
-                <BlueRiverHeader/>
+                <BlueRiverHeader currentUser={currentUser} />
                 <div style={{padding: ' 40px 60px'}}>
                     <ForumHeader/>
                     <ForumContent/>
