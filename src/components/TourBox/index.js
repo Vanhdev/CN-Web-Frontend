@@ -47,7 +47,7 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
 const TourBox = (props) => {
   const { tour } = props;
   const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
-  console.log(imageUrl);
+  // console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
   return <>
@@ -113,7 +113,7 @@ const TourBox = (props) => {
               <Row className="w-full" style={{fontFamily: "Signika", fontSize: 18, color: "#4B59D7", fontWeight: "bold"}}>${tour?.price}</Row>
             </Col>
             <Col className="flex items-end">
-              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/1")}>
+              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/" + tour?.id)}>
                 <Row>
                   <Col style={{fontFamily: "Signika", fontSize: 15, color: "#4B59D7"}}>Chi tiết</Col>
                   <Col className="flex items-center">

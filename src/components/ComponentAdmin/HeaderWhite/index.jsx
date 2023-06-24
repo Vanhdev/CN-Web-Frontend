@@ -25,7 +25,7 @@ const HeaderWhite = () => {
                         <Button 
                             type="text" 
                             style={{color: 'var(--blue-color)', display: "flex", alignItems: "center", justifyContent: "center"}} 
-                            onClick={() => navigate("/")}>
+                            onClick={handleClick}>
                                 <TbLogout size={30} />
                         </Button>
                     </Space>
