@@ -9,7 +9,13 @@ function IconCheckPost(props) {
     return(
         <div style={{marginRight: '25px'}}>
             <Space direction='vertical'>
-                <IconCheck icon={<CheckCircleIcon fontSize="small" style={{color: 'green'}}/>} text="Duyệt bài" post={post}/>
+                <IconCheck 
+                    icon={<CheckCircleIcon 
+                    fontSize="small" 
+                    style={{color: 'green'}}/>} 
+                    text="Duyệt bài" 
+                    post={post}
+                />
                 <AlertConfirmDeletePost/>
             </Space>
         </div>

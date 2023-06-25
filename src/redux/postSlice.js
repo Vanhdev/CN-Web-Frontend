@@ -3,46 +3,64 @@ import { createSlice } from "@reduxjs/toolkit";
 const postSlice = createSlice({
     name: 'post',
     initialState: {
-        create: {
-            user_id: null,
-            title: "",
-            content: "",
-            status: false,
-        },
-
-        allPosts: {
-            listPosts: [],
-            loading: false,
-            error: false
-        },
-
+        createPost: null,
+        allPosts: [],
+        detailPost: {}
     },
     reducers: {
         createPost: (state, action) => {
-            state.create.user_id = action.payload.user_id;
-            state.create.title = action.payload.title;
-            state.create.content = action.payload.content;
-            state.create.status = false;
-        },
-
-        getAllPostStart: (state) => {
-            state.allPosts.loading = true;
+            state.createPost = action.payload;
+            state.allPosts = [...state.allPosts, action.payload];
         },
 
         getAllPostSuccess: (state, action) => {
-            state.allPosts.loading = false;
-            state.allPosts.error = false;
-            state.allPosts.listCards = action.payload;
+            state.allPosts = action.payload;
         },
 
-        getAllPostFailed: (state, action) => {
-            state.allPosts.error = true;
-            state.allPosts.loading = false;
-            // state.message = action.payload;
+        getDetailPostSuccess: (state, action) => {
+            state.detailPost = action.payload;
         },
+
+        updateLikeSuccess: (state, action) => {
+            const new_state = action.payload;
+            state.detailPost = {...state.detailPost, ...new_state};
+        },
+
+        updateDislikeSuccess: (state, action) => {
+            const new_state = action.payload;
+            state.detailPost = {...state.detailPost, ...new_state};
+        },
+
+        acceptByAdmin: (state, action) => {
+            const new_data = action.payload;
+            const new_all_posts = state.allPosts.map(post => {
+                if(post.id == new_data.id) {
+                    return {...post, ...new_data};
+                }
+                else return post;
+            })
+            state.allPosts = new_all_posts;
+        },
+
+        deletePost: (state, action) => {
+            const id_post = action.payload;
+            const new_all_posts = state.allPosts.filter( post => {
+                return post.id != id_post;
+            })
+            state.allPosts = new_all_posts;
+        },
+
     }
 })
 
-export const {createPost, getAllPostStart, getAllPostSuccess, getAllPostFailed} = postSlice.actions;
+export const {
+    createPost, 
+    getAllPostSuccess, 
+    getDetailPostSuccess, 
+    updateLikeSuccess, 
+    updateDislikeSuccess, 
+    acceptByAdmin,
+    deletePost,
+ } = postSlice.actions;
 export default postSlice.reducer;
 

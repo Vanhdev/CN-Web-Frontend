@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import {List} from "antd";
 import AdminSinglePost from '../AdminSinglePost';
 
-function AdminListPost(props) {
+function AdminPostCheck(props) {
     const {list, check, adminPosts} = props;
 
-    const newAdminPosts = adminPosts.filter(post => post.status == "true");
+    const newAdminPosts = adminPosts.filter(post => post.status == "false");
 
     return(
         <div className="clientPost">
@@ -26,4 +26,4 @@ function AdminListPost(props) {
 }
 
 
-export default AdminListPost;
+export default AdminPostCheck;

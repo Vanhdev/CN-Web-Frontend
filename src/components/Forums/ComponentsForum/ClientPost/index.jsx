@@ -5,14 +5,18 @@ import ClientSinglePost from '../ClientSinglePost';
 
 function ClientPost(props) {
 
-    const {clientPosts} = props;
+    const {allPosts} = props;
+    const truePosts = allPosts.filter(post => {
+            return post.status === 'true';
+        }
+    );
 
     return(
         <div className="clientPost">
             <List
                 itemLayout="vertical"
                 className='listClientPost'
-                dataSource={clientPosts}
+                dataSource={truePosts}
                 pagination={{
                     pageSize: 5,
                 }}

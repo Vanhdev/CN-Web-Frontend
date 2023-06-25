@@ -1,4 +1,4 @@
-import { Button, Col, Input, Modal, Row, Space, Upload } from "antd";
+import { Button, Col, Input, Modal, Row, Space, Upload, message } from "antd";
 import './index.css';
 import { useState } from "react";
 import UploadImage from "../UploadImage";
@@ -11,7 +11,7 @@ function MakeNewPost() {
     const [topicPost, setTopicPost] = useState('');
     const [shortDesc, setShortDesc] = useState('');
     const [fullDesc, setFullDesc] = useState('');
-    const [imageList, setImageList] = useState([]);
+    const [image, setImage] = useState();
 
     const user = useSelector( state => state.auth.login?.currentUser);
     // console.log("current id of user: ", user.id);
@@ -20,15 +20,19 @@ function MakeNewPost() {
     const navigate = useNavigate();
 
     const handleNewPost = () => {
-        const newPost = {
-            user_id: user.id,
-            title: namePost,
-            // topicPost: topicPost,
-            // shortDesc: shortDesc,
-            content: fullDesc,
-            // imageList: imageList,
-        }
-        // createNewPost(newPost, dispatch, navigate);
+
+        const newPost = new FormData();
+        newPost.append("user_id", user.id);
+        newPost.append("title", namePost);
+        newPost.append("content", fullDesc);
+        newPost.append("full_description", fullDesc);
+        newPost.append("topic", topicPost);
+        newPost.append("short_description", shortDesc);
+        newPost.append("image", image);
+
+        createNewPost(newPost, dispatch, user?.accessToken);
+        message.success("Bài viết của bạn đang chờ kiểm duyệt!");
+        navigate('/forum');
     }
 
     return(
@@ -65,7 +69,8 @@ function MakeNewPost() {
                 <Row>
                     <Col span={24}>
                         <Space>
-                            <UploadImage imageList={imageList} setImageList={setImageList}/>
+                            <input type="file" required={true} onChange={e => setImage(e.target.files[0])}/>
+                            {/* <UploadImage imageList={imageList} setImageList={setImageList}/> */}
                         </Space>
                     </Col>
                 </Row>

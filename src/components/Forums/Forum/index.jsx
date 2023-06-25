@@ -7,37 +7,30 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Forum() {
-    // const navigate = useNavigate();
-    // const user = useSelector((state) => state.auth.login?.currentUser);
+    const navigate = useNavigate();
+    const user = useSelector((state) => state.auth.login?.currentUser);
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/login');
-    //     }
-    // }, []);
-    const currentUser = useSelector(state => state.auth.login.currentUser);
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, []);
 
     return(
         <>
-            {/* {
-                user && <div>  
-                            <BlueRiverHeader/>
-                            <div style={{padding: ' 40px 60px'}}>
-                                <ForumHeader/>
-                                <ForumContent/>
-                            </div>
+            {
+                user && user.email !== "admin@gmail.com" 
+                &&  <div>  
+                        <BlueRiverHeader/>
+                        <div style={{padding: ' 40px 60px'}}>
+                            <ForumHeader/>
+                            <ForumContent/>
                         </div>
+                    </div>
             }
             {
                 !user && <Spin></Spin>
-            } */}
-            <div>  
-                <BlueRiverHeader currentUser={currentUser} />
-                <div style={{padding: ' 40px 60px'}}>
-                    <ForumHeader/>
-                    <ForumContent/>
-                </div>
-            </div>
+            }
         </>
     )
 }

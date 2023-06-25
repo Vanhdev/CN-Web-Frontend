@@ -1,32 +1,41 @@
 import { useState, useEffect } from "react";
-import { getAllPosts } from "../../../API";
+import { getAllPosts, getListPosts } from "../../../API";
 import ClientPost from "../../../components/Forums/ComponentsForum/ClientPost";
 import './index.css';
 import { Spin } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function ForumHome() {
 
     const data = useSelector(state => state.searchText);
     const textSearch = data.text;
 
-    const allPosts = useSelector((state) => state.post.allPosts?.listPosts);
-    // console.log("allPost: ", allPosts);
+    const user = useSelector((state) => state.auth.login?.currentUser);
+    const allPosts = useSelector((state) => state.post.allPosts);
 
-    const [clientPosts, setClientPosts] = useState([]);
+    const [clientPosts, setClientPosts] = useState(allPosts);
     const [loading, setLoading] = useState(false);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     useEffect(() => {
-        setLoading(true);
-        getAllPosts().then(res => { //thay data in here
-            setClientPosts(res.posts);
+        if (!user) {
+            navigate('/login');
+        }
+    
+        if (user?.accessToken) {
+            setLoading(true);
+            getListPosts(user?.accessToken, dispatch);
             setLoading(false);
-        })
-    }, [])
+        }
+
+    }, []);
     
     useEffect( () => {
         setLoading(true);
-        getAllPosts().then(res => { //thay data in here
+        getAllPosts().then(res => {
             let searchPosts = [];
             for(let post of res.posts) {
                 let title = post.title;
@@ -46,13 +55,11 @@ function ForumHome() {
         )
     }
 
-    // console.log(clientPosts);
-
 
     return(
         <div className='forumHome'>
             <div style={{marginTop: '15px', fontSize: '20px'}}>Bài viết mới nhất</div>
-            <ClientPost clientPosts={clientPosts}/>
+            <ClientPost allPosts={allPosts}/>
         </div>    
     )
 }

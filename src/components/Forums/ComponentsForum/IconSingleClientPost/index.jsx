@@ -8,8 +8,8 @@ function IconSingleClientPost(props) {
     return(
         <div>
             <Space direction='vertical'>
-                <IconText icon={<RemoveRedEyeOutlined fontSize="small" style={{color: 'var(--blue-color)'}}/>} text={`${post.userId}`}/>
-                <IconText icon={<Favorite fontSize="small" style={{color: 'var(--pink-color)'}}/>} text={`${post.reactions}`}/>
+                {/* <IconText icon={<RemoveRedEyeOutlined fontSize="small" style={{color: 'var(--blue-color)'}}/>} text={`${}`}/> */}
+                <IconText icon={<Favorite fontSize="small" style={{color: 'var(--pink-color)'}}/>} text={`${post.num_like}`}/>
             </Space>
         </div>
     )

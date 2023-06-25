@@ -1,15 +1,19 @@
 import { Alert, Button, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { removeComment } from "../../redux/commentsTourSlice";
+import { deleteCmtOfPost } from "../../API";
 
 function AlertDelete(props) {
-    const {setShowAlert, index} = props;
+    const {setShowAlert, index, comment} = props;
+
+    const user = useSelector(state => state.auth.login?.currentUser);
 
     const dispatch = useDispatch();
 
     const handleDeleteComment = () => {
-        dispatch(removeComment(index))
+        deleteCmtOfPost(user?.accessToken, dispatch, comment?.id, comment);
     }
+
 
     return(
         <Alert

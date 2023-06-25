@@ -10,6 +10,7 @@ import searchTextReducer from "./searchTextSlice";
 import commentsTourReducer from './commentsTourSlice';
 import authReducer from './authSlice';
 import postReducer from './postSlice';
+import ansReducer from './qnaSlice';
 
 export default configureStore({
     reducer: {
@@ -24,5 +25,6 @@ export default configureStore({
         commentsTour: commentsTourReducer,
         auth: authReducer,
         post: postReducer,
+        ans: ansReducer,
     }
 })
