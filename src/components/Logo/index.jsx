@@ -1,13 +1,20 @@
 import React from "react";
 import { Row, Col, Button } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Logo = (props) => {
   const navigate = useNavigate();
+  const currentUser = useSelector(state => state.auth.login.currentUser);
   const { color, size } = props;
+
+  const handleClick = () => {
+    currentUser?.email === "admin@gmail.com" ? navigate("/admin") : navigate("/");
+  }
+
   return (
     <>
-      <Button className="w-fit h-fit m-0 p-0 border-none" onClick={() => navigate("/")}>
+      <Button className="w-fit h-fit m-0 p-0 border-none" onClick={handleClick}>
         <Row className="logo">
           <Col>
             <svg

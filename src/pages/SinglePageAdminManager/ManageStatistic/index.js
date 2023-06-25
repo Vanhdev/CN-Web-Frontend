@@ -1,8 +1,10 @@
 import React from "react";
 import { Row, Col } from "antd";
 import "../../../assets/fonts.css";
+import { useSelector } from "react-redux";
 
 const ManageStatistic = () => {
+    const accessToken = useSelector(state => state.auth.login.currentUser.accessToken);
     return(
         <>
             <Row className="w-full px-60 py-10">

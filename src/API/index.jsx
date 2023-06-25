@@ -84,28 +84,102 @@ export const deleteTour = (id, token) => {
     });
 }
 
-// export const createNewPost = async (new_post, dispatch, navigate) => {
-//     try {
-//         const res = await axios.post(`http://localhost:8086/users/add-post`, new_post);
-//         // console.log(res);
-//         // dispatch(createPost(res.data.newPost));
-//         navigate('/forum');
-//     }
-//     catch (err) {
-        
-//     }
-// }
+export const addVoucher = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-voucher', data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
 
-// export const takeAllPosts = async (accessToken, dispatch, navigate) => {
-//     dispatch(getAllPostStart());
-//     try {
-//       const res = await axios.get(`http://localhost:8086/users/get-post?id=all`, {
-//         headers: { token: `Bearer ${accessToken}` },
-//       });
-//       dispatch(getAllPostSuccess(res.data));
-//     } catch (error) {
-//       dispatch(getAllPostFailed());
-//     }
-// };
-  
+export const editVoucher = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-voucher?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const deleteVoucher = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/disable-voucher?id=' + id, data, { 
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const addService = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-service', data, {
+        headers: { token: `Bearer ${token}` }, 
+    });
+}
+
+export const saveService = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-service?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const addPlace = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-place', data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const savePlace = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-place?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getNumberOfTours = (token) => {
+    return axios.get('http://localhost:8086/admin/count-tours', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getNumberOfBookingTours = (token) => {
+    return axios.get('http://localhost:8086/admin/count-booking-tours', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getProfits = (token) => {
+    return axios.get('http://localhost:8086/admin/count-profits', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const imgSourceToFile = (url) => {
+    const toDataURL = url => fetch(url)
+        .then(response => response.blob())
+        .then(blob => new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+        }));
+
+    const dataURLtoFile = (dataurl, filename) => {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = window.atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    };
+
+
+    return toDataURL(url)
+        .then(dataUrl => {
+            // console.log('Here is Base64 Url', dataUrl)
+            return dataURLtoFile(dataUrl, "imageName.jpg");
+        });
+}
+
+export const getAllBooking = (token) => {
+    return axios.get('http://localhost:8086/admin/get-all-booking', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getBookTour = (id, token) => {
+    return axios.get('http://localhost:8086/users/get-book-tour?id=' + id, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
 
