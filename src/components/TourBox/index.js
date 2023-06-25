@@ -8,11 +8,12 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaCamera } from "react-icons/fa";
 
+const domain = "http://localhost:8086/";
+
 const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
   let ratingArr = [];
   for (let i = 0; i < 5; i++) {
     const item = rating5 > 100 ? 100 : rating5;
-    console.log(item);
     ratingArr.push(rating5 > 100 ? 100 : rating5);
     rating5 = rating5 > 100 ? rating5 - 100 : 0;
   }
@@ -26,6 +27,7 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
             width: size,
             transform: `translateX(${10 * index - 95}%) translateY(25%)`
           }}
+          key={index}
         >
           <div style={{ position: "absolute", zIndex: 2 }}>
             <div style={{ width: (item / 100) * size, overflow: "hidden" }}>
@@ -42,15 +44,19 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
   );
 };
 
-const TourBox = () => {
+const TourBox = (props) => {
+  const { tour } = props;
+  const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
+  // console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
   return <>
     <Col span={8} className="p-8">
       <Row className="w-full relative flex justify-center">
         <Image 
-          src={bg} 
-          width={"100%"} 
+          src={imageUrl} 
+          width={"100%"}
+          height={"200px"} 
           className="rounded-2xl" 
           onMouseEnter={() => setHover(true)} 
           onMouseLeave={() => setHover(false)}
@@ -80,13 +86,12 @@ const TourBox = () => {
               <AiTwotoneCalendar size={20} />
             </Col>
             <Col offset={1} style={{fontFamily: "Signika"}}>
-              6 ngày
+              {tour?.duration} ngày
             </Col>
           </Row>
           {hover ? 
             <Row className="flex items-center">
-              <Col span={10} pull={4}><FaCamera /></Col>
-              <Col span={10} style={{fontFamily: "Signika"}}>10</Col>   
+              <Col span={10} pull={4} style={{fontFamily: "Signika"}}><FaCamera /></Col>
             </Row> :
             <Row>
               <StarRating rating5={400} size={10} />
@@ -96,19 +101,19 @@ const TourBox = () => {
       </Row>
       <Row className="pt-8 -translate-y-5 rounded-b-lg" style={{boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
         <Row className="p-5"> 
-          <Col span={24} style={{fontFamily: "Signika", fontSize: 23}}>Waterfalls, Geysers and Glacier</Col>
+          <Col span={24} style={{fontFamily: "Signika", fontSize: 23}}>{tour?.name ?? "asd"}</Col>
           <Row className="w-full">
             <Col className="flex items-center"><MdOutlineLocationOn color="#ABB8C3" size={18} /></Col>
-            <Col style={{fontFamily: "Signika", fontSize: 18, color: "#ABB8C3"}}>Warsaw, Poland</Col>
+            <Col style={{fontFamily: "Signika", fontSize: 18, color: "#ABB8C3"}}>{tour?.place.name}</Col>
           </Row>
           <Divider className="my-3 w-full" color={"#ABB8C3"} />
           <Row className="w-full flex justify-between">
             <Col>
               <Row className="w-full" style={{fontFamily: "Signika", fontSize: 15, color: "#ABB8C3"}}>Chỉ từ</Row>
-              <Row className="w-full" style={{fontFamily: "Signika", fontSize: 18, color: "#4B59D7", fontWeight: "bold"}}>$100.00</Row>
+              <Row className="w-full" style={{fontFamily: "Signika", fontSize: 18, color: "#4B59D7", fontWeight: "bold"}}>${tour?.price}</Row>
             </Col>
             <Col className="flex items-end">
-              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/2")}>
+              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/" + tour?.id)}>
                 <Row>
                   <Col style={{fontFamily: "Signika", fontSize: 15, color: "#4B59D7"}}>Chi tiết</Col>
                   <Col className="flex items-center">

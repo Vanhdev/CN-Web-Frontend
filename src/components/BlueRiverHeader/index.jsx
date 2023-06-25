@@ -36,6 +36,7 @@ function BlueRiverHeader() {
                     <Image 
                         src={blueRiver}
                         preview={false}
+                        width={"100%"}
                     ></Image>
                     <div className="wrap-header-container">
                         <div className='header-container'>

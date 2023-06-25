@@ -14,6 +14,7 @@ function MakeNewPost() {
     const [image, setImage] = useState();
 
     const user = useSelector( state => state.auth.login?.currentUser);
+    // console.log("current id of user: ", user.id);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

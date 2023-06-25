@@ -25,11 +25,11 @@ const SigninModal = () => {
     
     const [form] = Form.useForm();
     const onFinish = () => {
-      console.log(form.getFieldsValue());
-      console.log("Signin!!!");
+      // console.log(form.getFieldsValue());
+      // console.log("Signin!!!");
     };
     const onFinishFailed = (err) => {
-      console.log("Error: ", err);
+      // console.log("Error: ", err);
     };
 
     const handleRegister = async (e) => {

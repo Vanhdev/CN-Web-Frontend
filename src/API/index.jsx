@@ -5,16 +5,53 @@ import { ConvertDate, ConvertLink } from "../functions";
 import { createComment, deleteCommentPost, getAllCmtsByID, updateCommentPost } from "../redux/commentPostSlice";
 import { answerByAdmin, createQuestion, getAllQuestions } from "../redux/qnaSlice";
 import { bookingTour, createNewRate, detailTour, getBookedTour, getRates } from "../redux/tourSlice";
+import { ActionBox, typeArray } from "../pages/SinglePageAdminManager/ManageTour/TourStock";
 
 export const getAllPosts = () => {
     return fetch('https://dummyjson.com/posts')
     .then(res => res.json());
 }
 
+export const getAllService = (token) => {
+    return axios.get('http://localhost:8086/admin/get-service?id=all', {
+        headers: { token: `Bearer ${token}` },
+    }).then(res => res.data);
+}
+
+export const getAllVoucher = (token) => {
+    return axios.get('http://localhost:8086/admin/get-voucher?id=all', {
+        headers: { token: `Bearer ${token}` },
+    }).then(res => res.data);
+}
+
+export const getAllPlace = () => {
+    return axios.get('http://localhost:8086/admin/get-place?id=all')
+        .then(res => res.data);
+}
+
+export const getAllTour = () => {
+    return axios.get("http://localhost:8086/admin/get-tour?id=all");
+}
+
+export const getAllTourTableData = (setData) => {
+    getAllTour().then(res => res.data.map((item, index) => {
+        return {
+            key: item.id,
+            name: item.name,
+            type: typeArray[item.type_id],
+            price: "$" + item.price,
+            duration: item.duration + " ngày",
+            slots: item.slots + " người",
+            place: item.place?.name,
+            action: <ActionBox id={item.id} setDataSource={setData} />
+        };
+    })).then(data => setData(data));
+}
+
 export const loginUser = async (user, dispatch, navigate) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post(`http://localhost:3005/auth/login`, user);
+        const res = await axios.post(`http://localhost:8086/auth/login`, user);
         dispatch(loginSuccess(res.data.user));
         if(res.data.user.email === "admin@gmail.com") {
             navigate('/admin');
@@ -31,7 +68,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
     dispatch(registerStart());
     try {
-        await axios.post(`http://localhost:3005/auth/register`, user);
+        await axios.post(`http://localhost:8086/auth/register`, user);
         dispatch(registerSuccess());
         navigate('/login');
     } catch (error) {
@@ -41,7 +78,7 @@ export const registerUser = async (user, dispatch, navigate) => {
 
 export const updateUser = async (update_user, accessToken, dispatch) => {
     try{
-        const res = await axios.put(`http://localhost:3005/users/update-user`, update_user, {
+        const res = await axios.put(`http://localhost:8086/users/update-user`, update_user, {
             headers: {
                 token: `Bearer ${accessToken}`
             }
@@ -54,7 +91,7 @@ export const updateUser = async (update_user, accessToken, dispatch) => {
 
 export const createNewPost = async (new_post, dispatch, accessToken) => {
     try {
-        const res = await axios.post(`http://localhost:3005/users/add-post`, new_post, {
+        const res = await axios.post(`http://localhost:8086/users/add-post`, new_post, {
             headers: {
                 token: `Bearer ${accessToken}`,
             }
@@ -68,7 +105,7 @@ export const createNewPost = async (new_post, dispatch, accessToken) => {
 
 export const getListPosts = async (accessToken, dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:3005/users/get-post?id=all`, {
+        const res = await axios.get(`http://localhost:8086/users/get-post?id=all`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(getAllPostSuccess(res.data));
@@ -79,7 +116,7 @@ export const getListPosts = async (accessToken, dispatch) => {
 
 export const getDetailPost = async (accessToken, dispatch, idPost) => {
     try {
-        const detail_post = await axios.get(`http://localhost:3005/users/get-post?id=${idPost}`, {
+        const detail_post = await axios.get(`http://localhost:8086/users/get-post?id=${idPost}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         let detailPost = detail_post.data;
@@ -97,7 +134,7 @@ export const getDetailPost = async (accessToken, dispatch, idPost) => {
 
 export const upLike = async (accessToken, dispatch, acitonInfo) => {
     try {
-        const new_post = await axios.put('http://localhost:3005/users/react-post', acitonInfo, {
+        const new_post = await axios.put('http://localhost:8086/users/react-post', acitonInfo, {
             headers: { token: `Bearer ${accessToken}` },
         });
 
@@ -115,7 +152,7 @@ export const upLike = async (accessToken, dispatch, acitonInfo) => {
 
 export const upDislike = async (accessToken, dispatch, acitonInfo) => {
     try {
-        const new_post = await axios.put('http://localhost:3005/users/react-post', acitonInfo, {
+        const new_post = await axios.put('http://localhost:8086/users/react-post', acitonInfo, {
             headers: { token: `Bearer ${accessToken}` },
         });
 
@@ -133,7 +170,7 @@ export const upDislike = async (accessToken, dispatch, acitonInfo) => {
 
 export const addCommentPost = async (accessToken, dispatch, new_cmt, user) => {
     try {
-        const new_cmt_post = await axios.post('http://localhost:3005/users/add-comment', new_cmt, {
+        const new_cmt_post = await axios.post('http://localhost:8086/users/add-comment', new_cmt, {
             headers: { token: `Bearer ${accessToken}` },
         });
         const newData = {...new_cmt_post.data.newCmt, user};
@@ -146,7 +183,7 @@ export const addCommentPost = async (accessToken, dispatch, new_cmt, user) => {
 
 export const getListCommentsById = async(accessToken, dispatch, idPost) => {
     try {
-        const res = await axios.get(`http://localhost:3005/users/get-comment?id=${idPost}`, {
+        const res = await axios.get(`http://localhost:8086/users/get-comment?id=${idPost}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(getAllCmtsByID(res.data.listCmt));
@@ -158,7 +195,7 @@ export const getListCommentsById = async(accessToken, dispatch, idPost) => {
 
 export const updateCommentOfPost = async (accessToken, dispatch, newComment) => {
     try {
-        const res = await axios.put(`http://localhost:3005/users/edit-comment?id=${newComment.id}`, newComment, {
+        const res = await axios.put(`http://localhost:8086/users/edit-comment?id=${newComment.id}`, newComment, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(updateCommentPost(res.data.comment));
@@ -170,7 +207,7 @@ export const updateCommentOfPost = async (accessToken, dispatch, newComment) => 
 
 export const deleteCmtOfPost = async (accessToken, dispatch, idPost, cmtDelete) => {
     try{
-        await axios.delete(`http://localhost:3005/users/delete-comment?id=${idPost}`, {
+        await axios.delete(`http://localhost:8086/users/delete-comment?id=${idPost}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(deleteCommentPost(cmtDelete));
@@ -182,7 +219,7 @@ export const deleteCmtOfPost = async (accessToken, dispatch, idPost, cmtDelete) 
 
 export const sendQuestion = async (accessToken, dispatch, new_question) => {
     try{
-        const res = await axios.post(`http://localhost:3005/users/add-qas`, new_question,{
+        const res = await axios.post(`http://localhost:8086/users/add-qas`, new_question,{
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(createQuestion(res.data.newQuestion));
@@ -194,7 +231,7 @@ export const sendQuestion = async (accessToken, dispatch, new_question) => {
 
 export const listQuestions = async (accessToken, dispatch, idQuestion) => {
     try{
-        const res = await axios.get(`http://localhost:3005/users/get-question?id=${idQuestion}`, {
+        const res = await axios.get(`http://localhost:8086/users/get-question?id=${idQuestion}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(getAllQuestions(res.data));
@@ -206,7 +243,7 @@ export const listQuestions = async (accessToken, dispatch, idQuestion) => {
 
 export const answerQuestionByAdmin = async (accessToken, dispatch, answer, idQuestion) => {
     try{
-        const res = await axios.put(`http://localhost:3005/admin/ans-qas?id=${idQuestion}`, answer , {
+        const res = await axios.put(`http://localhost:8086/admin/ans-qas?id=${idQuestion}`, answer , {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(answerByAdmin(res.data.question));
@@ -218,7 +255,7 @@ export const answerQuestionByAdmin = async (accessToken, dispatch, answer, idQue
 
 export const acceptPostByAdmin = async (accessToken, dispatch, status, idPost) => {
     try{
-        const res = await axios.put(`http://localhost:3005/admin/handle-post?id=${idPost}`, status , {
+        const res = await axios.put(`http://localhost:8086/admin/handle-post?id=${idPost}`, status , {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(acceptByAdmin(res.data.post));
@@ -230,7 +267,7 @@ export const acceptPostByAdmin = async (accessToken, dispatch, status, idPost) =
 
 export const deletePostByUser = async (accessToken, dispatch, idPost) => {
     try{
-        await axios.delete(`http://localhost:3005/users/delete-post?id=${idPost}`, {
+        await axios.delete(`http://localhost:8086/users/delete-post?id=${idPost}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(deletePost(idPost));
@@ -242,7 +279,7 @@ export const deletePostByUser = async (accessToken, dispatch, idPost) => {
 
 export const getDetailTour = async (accessToken, dispatch, idTour) => {
     try{
-        const res = await axios.get(`http://localhost:3005/admin/get-tour?id=${idTour}`, {
+        const res = await axios.get(`http://localhost:8086/admin/get-tour?id=${idTour}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(detailTour(res.data));
@@ -254,7 +291,7 @@ export const getDetailTour = async (accessToken, dispatch, idTour) => {
 
 export const makeNewRate = async (accessToken, dispatch, newRate) => {
     try{
-        const res = await axios.post(`http://localhost:3005/users/add-rate`, newRate, {
+        const res = await axios.post(`http://localhost:8086/users/add-rate`, newRate, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(createNewRate(res.data.newRate));
@@ -266,7 +303,7 @@ export const makeNewRate = async (accessToken, dispatch, newRate) => {
 
 export const getAllRates = async (accessToken, dispatch, idTour) => {
     try{
-        const res = await axios.get(`http://localhost:3005/users/get-rate?idTour=${idTour}`, {
+        const res = await axios.get(`http://localhost:8086/users/get-rate?idTour=${idTour}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         dispatch(getRates(res.data));
@@ -278,7 +315,7 @@ export const getAllRates = async (accessToken, dispatch, idTour) => {
 
 export const userBookTour = async (accessToken, dispatch, new_tour_booking) => {
     try{
-        const res = await axios.post(`http://localhost:3005/users/book-tour`, new_tour_booking, {
+        const res = await axios.post(`http://localhost:8086/users/book-tour`, new_tour_booking, {
             headers: { token: `Bearer ${accessToken}` },
         });
         console.log("tour booking", res.data.tourBooking);
@@ -292,7 +329,7 @@ export const userBookTour = async (accessToken, dispatch, new_tour_booking) => {
 
 export const getAllBookedTour = async (accessToken, dispatch, idUser) => {
     try{
-        const res = await axios.get(`http://localhost:3005/users/get-book-tour?id=${idUser}`, {
+        const res = await axios.get(`http://localhost:8086/users/get-book-tour?id=${idUser}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
         console.log("all tours booking", res.data);
@@ -305,4 +342,114 @@ export const getAllBookedTour = async (accessToken, dispatch, idUser) => {
 
 
   
+export const addTour = (data, token, navigate) => {
+    axios.post('http://localhost:8086/admin/add-tour', data, {
+        headers: { token: `Bearer ${token}` },
+    }).then(() => navigate('/admin/manage-tour/tour-stock'));
+}
+
+export const deleteTour = (id, token) => {
+    return axios.delete("http://localhost:8086/admin/delete-tour?id=" + id, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const addVoucher = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-voucher', data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const editVoucher = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-voucher?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const deleteVoucher = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/disable-voucher?id=' + id, data, { 
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const addService = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-service', data, {
+        headers: { token: `Bearer ${token}` }, 
+    });
+}
+
+export const saveService = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-service?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const addPlace = (data, token) => {
+    return axios.post('http://localhost:8086/admin/add-place', data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const savePlace = (id, data, token) => {
+    return axios.put('http://localhost:8086/admin/edit-place?id=' + id, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getNumberOfTours = (token) => {
+    return axios.get('http://localhost:8086/admin/count-tours', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getNumberOfBookingTours = (token) => {
+    return axios.get('http://localhost:8086/admin/count-booking-tours', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getProfits = (token) => {
+    return axios.get('http://localhost:8086/admin/count-profits', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const imgSourceToFile = (url) => {
+    const toDataURL = url => fetch(url)
+        .then(response => response.blob())
+        .then(blob => new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.onloadend = () => resolve(reader.result)
+            reader.onerror = reject
+            reader.readAsDataURL(blob)
+        }));
+
+    const dataURLtoFile = (dataurl, filename) => {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = window.atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    };
+
+
+    return toDataURL(url)
+        .then(dataUrl => {
+            // console.log('Here is Base64 Url', dataUrl)
+            return dataURLtoFile(dataUrl, "imageName.jpg");
+        });
+}
+
+export const getAllBooking = (token) => {
+    return axios.get('http://localhost:8086/admin/get-all-booking', {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
+export const getBookTour = (id, token) => {
+    return axios.get('http://localhost:8086/users/get-book-tour?id=' + id, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
 
