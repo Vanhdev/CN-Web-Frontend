@@ -33,7 +33,7 @@ function UpdateComment(props) {
         <div className="wrap-client-comments">
             <div>
                 <div className="user-header-cmt margin25">
-                    <AvatarPost avatar={avatar} name='Anh Leonard' date='12/04/2023'/>
+                    <AvatarPost avatar={avatar} name={`USER ID: ${item.user_id}`} date='12/04/2023'/>
                     <Button type="primary" onClick={handleSaveComment} style={{backgroundColor: "green"}}>Lưu lại</Button>
                 </div>
                 <Space className="client-evaluate">
@@ -42,13 +42,6 @@ function UpdateComment(props) {
                     <RateItemColumn label='Dịch vụ' value={priceValue} setValue={setPriceValue}/>
                     <RateItemColumn label='Giá cả' value={serviceValue} setValue={setServiceValue}/>
                 </Space>
-                <div className="margin25">   
-                    {
-                        !comment 
-                        ? <Spin></Spin> 
-                        : <Input.TextArea style={{height: '100px'}} defaultValue={comment} value={comment} onChange={(e) => setComment(e.target.value)}/>
-                    }
-                </div>
             </div>
         </div>
     )

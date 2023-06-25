@@ -6,31 +6,33 @@ import RateItemColumn from "../../RateItemColumn";
 import avatar from '../../../assets/images/main-avatar.png';
 import { Space, Typography } from "antd";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 
 function UserComments(props) {
     const {setShowUpdate, item, index} = props;
     
     const [showAlert, setShowAlert] = useState(false);
+    const user = useSelector( state => state.auth.login?.currentUser);
 
     return(
         <div className="wrap-client-comments">
             <div>
                 <div className="user-header-cmt margin25">
-                    <AvatarPost avatar={avatar} name='Anh Leonard' date='12/04/2023'/>
+                    <AvatarPost avatar={avatar} name={`USER ID: ${item.user_id}`} date='12/04/2023'/>
                     {
-                        showAlert ? <AlertDelete setShowAlert={setShowAlert} index={index}/> : <DropdownUserOption setShowAlert={setShowAlert} setShowUpdate={setShowUpdate}/>
+                        user.id == item.user_id && showAlert && <AlertDelete setShowAlert={setShowAlert} index={index}/>
+                    }
+                    {
+                        user.id == item.user_id && !showAlert && <DropdownUserOption setShowAlert={setShowAlert} setShowUpdate={setShowUpdate}/>
                     }
                 </div>
                 <Space className="client-evaluate">
-                    <RateItemColumn label='Vị trí địa lý' value={item.positionValue}/>
-                    <RateItemColumn label='Phòng ốc' value={item.roomValue}/>
-                    <RateItemColumn label='Dịch vụ' value={item.priceValue}/>
-                    <RateItemColumn label='Giá cả' value={item.serviceValue}/>
+                    <RateItemColumn label='Vị trí địa lý' value={item.location_rate}/>
+                    <RateItemColumn label='Phòng ốc' value={item.infrastructure_rate}/>
+                    <RateItemColumn label='Dịch vụ' value={item.price_rate}/>
+                    <RateItemColumn label='Giá cả' value={item.service_rate}/>
                 </Space>
-                <div className="margin25">
-                    <Typography.Paragraph style={{textAlign:'justify'}}>{item.comment}</Typography.Paragraph>
-                </div>
             </div>
         </div>    
     )

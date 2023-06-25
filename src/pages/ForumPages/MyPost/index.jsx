@@ -1,20 +1,34 @@
 import { useState, useEffect } from "react";
 import AllUserPost from "../../../components/Forums/ComponentsForum/AllUserPost";
 import './index.css';
-import { getAllPosts } from "../../../API";
+import { getAllPosts, getListPosts } from "../../../API";
 import { Spin } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function MyPost() {
 
-    const [userPosts, setUserPosts] = useState([]);
+    const user = useSelector(state => state.auth.login?.currentUser);
+    const allPosts = useSelector(state => state.post.allPosts);
+    const myPosts = allPosts.filter( post => {
+        return post.user_id == user.id && post.status === 'true';
+    })
+
+
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setLoading(true);
-        getAllPosts().then(res => { //thay data in here
-            setUserPosts(res.posts);
+        if (!user) {
+            navigate('/login');
+        }
+    
+        if (user?.accessToken) {
+            setLoading(true);
+            getListPosts(user?.accessToken, dispatch);
             setLoading(false);
-        })
+        }
     }, [])
 
     if(loading) {
@@ -24,9 +38,15 @@ function MyPost() {
     }
 
     return(
-        <div className="my-post">
-            <AllUserPost userPosts={userPosts}/>
-        </div>    
+        <>
+            {
+                user && myPosts
+                &&
+                <div className="my-post">
+                    <AllUserPost userPosts={myPosts}/>
+                </div>
+            }  
+        </>  
     )
 }
 

@@ -1,4 +1,4 @@
-import ContentSinglePost from '../../../ContentSinglePost';
+import ContentSinglePostClient from '../../../ContentSinglePostClient';
 import IconSingleUserPost from '../IconSingleUserPost';
 
 function SinglePost(props) {
@@ -6,7 +6,7 @@ function SinglePost(props) {
 
     return(
         <div className="single-post">
-            <ContentSinglePost post={post}/>
+            <ContentSinglePostClient post={post}/>
             <IconSingleUserPost post={post}/>
         </div>    
     )

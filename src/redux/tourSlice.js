@@ -3,24 +3,35 @@ import {createSlice} from '@reduxjs/toolkit';
 const tourSlice = createSlice({
     name: 'tour',
     initialState: {
-        dateStart: null,
-        time: '',
-        countAdult: 0,
-        countTeenager: 0,
-        countBaby: 0,
-        total: null
+        tour: {},
+        newRate: {},
+        allRates: [],
+        newBooking: {},
+        allBookedTours: [],
     },
     reducers: {
-        updateTour: (state, action) => {
-            state.dateStart = action.payload.dateStart;
-            state.time = action.payload.time;
-            state.countAdult = action.payload.countAdult;
-            state.countTeenager = action.payload.countTeenager;
-            state.countBaby = action.payload.countBaby;
-            state.total = action.payload.total;
+        detailTour: (state, action) => {
+            state.tour = action.payload;
+        },
+
+        createNewRate: (state, action) => {
+            state.newRate = action.payload;
+            state.allRates.rates = [...state.allRates.rates, action.payload];
+        },
+
+        getRates: (state, action) => {
+            state.allRates = action.payload;
+        },
+
+        bookingTour: (state, action) => {
+            state.allBookedTours = [...state.allBookedTours, action.payload];
+        },
+
+        getBookedTour: (state, action) => {
+            state.allBookedTours = action.payload;
         }
     }
 })
 
-export const {updateTour} = tourSlice.actions;
+export const {detailTour, createNewRate, getRates, bookingTour, getBookedTour} = tourSlice.actions;
 export default tourSlice.reducer;

@@ -1,10 +1,18 @@
 import { Box, styled } from "@mui/material";
 import { Space, message } from "antd";
+import { acceptPostByAdmin } from "../../../API";
+import { useDispatch, useSelector } from "react-redux";
 
 function IconCheck(props) {
     const {icon, text, post} = props;
+    const user = useSelector((state) => state.auth.login?.currentUser);
+    const dispatch = useDispatch();
     
     const handleCheckPost = () => {
+        const new_status = {
+            status: "true"
+        }
+        acceptPostByAdmin(user?.accessToken, dispatch, new_status, post?.id);
         message.success(`Đã duyệt bài "${post.title}"`);
     }
 

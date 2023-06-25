@@ -1,7 +1,7 @@
 import { InputNumber } from "antd";
 
 function PersonTicker(props) {
-    const {label, price, countPerson, setCountPerson, setTotalPerson} = props;
+    const {label, price, countPerson, setCountPerson, setTotalPerson, max} = props;
 
     const handleInputNumber = (value) => {
         setCountPerson(value);
@@ -15,7 +15,7 @@ function PersonTicker(props) {
                 <div style={{color: 'var(--blue-color)'}}>${price}</div>
             </div>
             <div>
-                <InputNumber min={0} max={5} defaultValue={0} value={countPerson} onChange={handleInputNumber}/>
+                <InputNumber min={0} max={max} defaultValue={0} value={countPerson} onChange={handleInputNumber}/>
             </div>
         </div>
     )

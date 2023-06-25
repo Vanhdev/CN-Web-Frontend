@@ -9,24 +9,24 @@ function Evaluate() {
     const [service, setService] = useState(0);
     const [price, setPrice] = useState(0);
 
-    const userValues = useSelector(state => state.commentsTour.comments);
+    const allRates = useSelector(state => state.tour.allRates);
 
     useEffect( () => {
         let position = 0;
         let room = 0;
         let service = 0;
         let price = 0;
-        userValues.map( item => {
-            position += item.positionValue;
-            room += item.roomValue;
-            service += item.serviceValue;
-            price += item.priceValue;
+        allRates?.rates?.map( item => {
+            position += item.location_rate;
+            room += item.infrastructure_rate;
+            service += item.service_rate;
+            price += item.price_rate;
         })
-        setPosition(position/userValues.length);
-        setRoom(room/userValues.length);
-        setService(service/userValues.length);
-        setPrice(price/userValues.length);
-    }, [userValues])
+        setPosition(position/allRates?.rates?.length);
+        setRoom(room/allRates?.rates?.length);
+        setService(service/allRates?.rates?.length);
+        setPrice(price/allRates?.rates?.length);
+    }, [allRates])
 
     return(
         <>
@@ -34,7 +34,7 @@ function Evaluate() {
             <div className="wrap-all-rate">
                 <div className="final-rate">
                     <Space size={0} className="rate">
-                        <h2 className="rate-number">{userValues.length !== 0 ? parseFloat(((position + service + room + price)/4).toFixed(1)) : '5.0'}</h2>/5
+                        <h2 className="rate-number">{allRates?.rates?.length !== 0 ? parseFloat(((position + service + room + price)/4).toFixed(1)) : '5.0'}</h2>/5
                     </Space>
                     <div>Give me some feedbacks, we give you satisfaction!</div>
                 </div>

@@ -108,7 +108,7 @@ const TourBox = () => {
               <Row className="w-full" style={{fontFamily: "Signika", fontSize: 18, color: "#4B59D7", fontWeight: "bold"}}>$100.00</Row>
             </Col>
             <Col className="flex items-end">
-              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/1")}>
+              <Button type="link" className="border-none p-0 translate-y-1" onClick={() => navigate("detail-tour/2")}>
                 <Row>
                   <Col style={{fontFamily: "Signika", fontSize: 15, color: "#4B59D7"}}>Chi tiết</Col>
                   <Col className="flex items-center">

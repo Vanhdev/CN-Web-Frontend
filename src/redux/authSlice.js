@@ -45,9 +45,29 @@ const authSlice = createSlice({
             state.register.error = true;
             state.register.success = false;
         },
+        
+        logout: (state) => {
+            state.login.loading = false;
+            state.login.currentUser = null;
+            state.login.error = false;
+        },
+        
+        updateUserSuccess: (state, action) => {
+            state.login.currentUser = {...state.login.currentUser, ...action.payload};
+            console.log("current user: ", state.login.currentUser);
+        }
     }
 })
 
-export const {loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed} = authSlice.actions;
+export const {
+    loginStart, 
+    loginSuccess, 
+    loginFailed, 
+    registerStart, 
+    registerSuccess, 
+    registerFailed,
+    logout,
+    updateUserSuccess
+} = authSlice.actions;
 
 export default authSlice.reducer;

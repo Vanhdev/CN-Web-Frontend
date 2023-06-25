@@ -8,13 +8,23 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer";
 import PerfectDestination from "./components/PerfectDestination";
 import { useSelector } from "react-redux";
+import HeaderUs from "../../components/ComponentUS/HeaderUs";
 
 const HomePage = () => {
 
+  const user = useSelector(state => state.auth.login?.currentUser);
+  console.log(user);
+
   return <>
     <Row className="w-full relative">
-      <Image src={bg} width={"100%"} preview={false} />
-      <TopBar className="absolute top-0 left-0 right-0" />
+      {user === null
+      ?
+      <><Image src={bg} width={"100%"} preview={false} />
+        <TopBar className="absolute top-0 left-0 right-0" /></>
+      : 
+      <><HeaderUs/>
+        <Image src={bg} width={"100%"} preview={false} /></>
+      }
     </Row>
     <Row className="w-full p-5">
       <Col span={24} className="text-xl" style={{fontFamily: "Signika"}}>Những trải nghiệm văn hoá đặc sắc!</Col>

@@ -1,19 +1,25 @@
-import { Button, Card, DatePicker, Divider, Image, Input, InputNumber, Radio, Space } from "antd";
+import { Button, Card, DatePicker, Divider, Image, Input, InputNumber, Radio, Space, message } from "antd";
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import NewReleasesOutlinedIcon from '@mui/icons-material/NewReleasesOutlined';
 import './index.css';
 import PersonTicker from "../PersonTicker";
 import vatIcon from '../../../assets/images/VAT.svg';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { userBookTour } from "../../../API";
 
-function BookTour() {
+function BookTour(props) {
+    const {detailTour} = props;
     const tour = useSelector(state => state.tour);
+    const user = useSelector( state => state.auth.login?.currentUser);
 
-    const [dateStart, setDateStart] = useState(tour.dateStart);
-    const [time, setTime] = useState(tour.time);
-    const [countAdult, setCountAdult] = useState(tour.countAdult);
-    const [countTeenager, setCountTeenager] = useState(tour.countTeenager);
-    const [countBaby, setCountBaby] = useState(tour.countBaby);
-    const [total, setTotal] = useState(tour.total);
+    const [dateStart, setDateStart] = useState("");
+    const [time, setTime] = useState("");
+    const [countAdult, setCountAdult] = useState(0);
+    const [countTeenager, setCountTeenager] = useState(0);
+    const [countBaby, setCountBaby] = useState(0);
+    const [total, setTotal] = useState(0);
 
     const [totalAdult, setTotalAdult] = useState(0);
     const [totalTeenager, setTotalTeenager] = useState(0);
@@ -22,10 +28,39 @@ function BookTour() {
     const [loadTime, setLoadTime] = useState(false);
 
     const handleDate = (date, dateString) => {
-        dateString ? (setLoadTime(true) && setDateStart(dateString)) : setLoadTime(false);
+        if(dateString) {
+            setLoadTime(true);
+            setDateStart(dateString);
+        }
+        else {
+            setLoadTime(false);
+        }
     }
 
+    useEffect(() => {
+        function calculateTotalMoney() {
+            const total = (totalAdult + totalTeenager + totalBaby + 10)* (detailTour.voucher.discount)/100;
+            setTotal(total);
+        }
+
+        calculateTotalMoney();
+
+    }, [totalAdult, totalTeenager, totalBaby])
+
     const dispatch = useDispatch();
+
+    const handlePaymentTour = () => {
+        const new_tour_booking = {
+            user_id: user.id,
+            tour_id: detailTour.tour.id,
+            arrival_day: dateStart,
+            arrival_time: time,
+            price: total,
+            num_people: countAdult + countTeenager + countBaby
+        }
+        userBookTour(user?.accessToken, dispatch, new_tour_booking);
+        message.success("Booking tour completed successfully!")
+    }
 
     return(
         <div className="bookTour">
@@ -54,9 +89,9 @@ function BookTour() {
                         <div>
                             {loadTime && (
                                 <Radio.Group value={time} onChange={(e) => setTime(e.target.value)}>
-                                    <Radio value={'8:30'}>8:30</Radio>
-                                    <Radio value={'10:30'}>10:30</Radio>
-                                    <Radio value={'12:30'}>12:30</Radio>
+                                    <Radio value={detailTour.arrival1.arrival_at} >{detailTour.arrival1.arrival_at.slice(0,5)}</Radio>
+                                    <Radio value={detailTour.arrival2.arrival_at} >{detailTour.arrival2.arrival_at.slice(0,5)}</Radio>
+                                    <Radio value={detailTour.arrival3.arrival_at} >{detailTour.arrival3.arrival_at.slice(0,5)}</Radio>
                                 </Radio.Group>
                             )}
                         </div>
@@ -66,21 +101,51 @@ function BookTour() {
                     <div className="price-ticker">
                         <div className="main-fee-title">Giá vé</div>
                         <div>
-                           <PersonTicker label='Người lớn (≥18 tuổi)' price={100} countPerson={countAdult} setCountPerson={setCountAdult} setTotalPerson={setTotalAdult}/>
-                           <PersonTicker label='Thiếu niên (13 - 17 tuổi)' price={90} countPerson={countTeenager} setCountPerson={setCountTeenager} setTotalPerson={setTotalTeenager}/>
-                           <PersonTicker label='Trẻ em(0 - 12 tuổi)' price={0} countPerson={countBaby} setCountPerson={setCountBaby} setTotalPerson={setTotalBaby}/>
+                           <PersonTicker 
+                                label='Người lớn (≥18 tuổi)' 
+                                price={detailTour.tour.price} 
+                                countPerson={countAdult} 
+                                setCountPerson={setCountAdult} 
+                                setTotalPerson={setTotalAdult}
+                                max={detailTour.tour.slots - countTeenager - countBaby}
+                           />
+                           <PersonTicker 
+                                label='Thiếu niên (13 - 17 tuổi)' 
+                                price={detailTour.tour.price*0.8} 
+                                countPerson={countTeenager} 
+                                setCountPerson={setCountTeenager} 
+                                setTotalPerson={setTotalTeenager}
+                                max={detailTour.tour.slots - countAdult - countBaby}
+                           />
+                           <PersonTicker 
+                                label='Trẻ em(0 - 12 tuổi)' 
+                                price={0} 
+                                countPerson={countBaby} 
+                                setCountPerson={setCountBaby} 
+                                setTotalPerson={setTotalBaby}
+                                max={detailTour.tour.slots - countTeenager - countAdult}
+                           />
                         </div>
                     </div>
                     <Divider className="style-divider"/>
 
                     <div className="fee-adding">
                         <div className="main-fee-title">Chi phí bổ sung</div>
-                        <div className="fee-detail">
-                            <Space>
-                                <Image src={vatIcon} ></Image>
-                                <div style={{color: 'var(--gray-color)', fontWeight: '200'}}>Thuế VAT</div>
-                            </Space>
-                           <div>$10</div>
+                        <div>
+                            <div className="fee-detail" style={{margin: "10px 0"}}>
+                                <Space>
+                                    <NewReleasesOutlinedIcon color="action"/>
+                                    <div style={{color: 'var(--gray-color)', fontWeight: '200'}}>Thuế VAT</div>
+                                </Space>
+                                <div>$10</div>
+                            </div>
+                            <div className="fee-detail" style={{margin: "10px 0"}}>
+                                <Space>
+                                    <LocalOfferOutlinedIcon color="action"/>
+                                    <div style={{color: 'var(--gray-color)', fontWeight: '200'}}>Voucher {detailTour.voucher.name}</div>
+                                </Space>
+                                <div>{detailTour.voucher.discount}%</div>
+                            </div>
                         </div>
                     </div>
                     <Divider className="style-divider"/>
@@ -88,11 +153,14 @@ function BookTour() {
                     <div className="total-money total-money-style">
                         <div>Tổng tiền</div>
                         <div>
-                            {totalAdult + totalTeenager + totalBaby + 10}
+                            ${total}
                         </div>
                     </div>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
-                        <Button className="pay-button">Thanh toán</Button>
+                        <Button 
+                            className="pay-button"
+                            onClick={handlePaymentTour}
+                        >Thanh toán</Button>
                     </div>
                 </div>
             </Card>

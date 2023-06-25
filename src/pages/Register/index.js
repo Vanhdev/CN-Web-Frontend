@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Row, Input, Col } from "antd";
+import { Button, Form, Row, Input, Col, DatePicker } from "antd";
 import { MdAttachEmail, MdPhoneInTalk, MdLocationOn } from "react-icons/md";
 import { IoMdLock } from "react-icons/io";
 import { FaUserEdit } from "react-icons/fa";
@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { registerUser } from "../../API";
+import dayjs from "dayjs";
 
 const SigninModal = () => {
     const [name, setName] = useState('');
@@ -68,11 +69,11 @@ const SigninModal = () => {
                   </Col>
                   <Col span={21} offset={1}>
                     <Form.Item name="birthday" className="m-0">
-                      <Input
+                      <DatePicker
                         placeholder="Ngày sinh"
                         className="h-full text-white bg-transparent border-none placeholder:text-white"
                         size="large"
-                        onChange={(e) => setDate(e.target.value)}
+                        onChange={(date, dateString) => setDate(dateString)}
                       />
                     </Form.Item>
                   </Col>

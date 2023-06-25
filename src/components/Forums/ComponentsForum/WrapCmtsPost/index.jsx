@@ -3,14 +3,14 @@ import UserCmtPost from "../UserCmtPost";
 import UserCmtUpdate from "../UserCmtUpdate";
 import { useSelector } from "react-redux";
 
-function WrapCmtsPost() {
-    const textComment = useSelector(state => state.commentPost);
+function WrapCmtsPost(props) {
+    const { comment, user } = props;
+
     const [openUpdate, setOpenUpdate] = useState(false);
-    const [response, setResponse] = useState(textComment.text);
-    
+
     return(
         <div className="wrap-cmt-post margin20">
-            {!openUpdate ? <UserCmtPost setOpenUpdate={setOpenUpdate} comment={response}/> : <UserCmtUpdate setOpenUpdate={setOpenUpdate} comment={response} setComment={setResponse}/>}
+            {!openUpdate ? <UserCmtPost setOpenUpdate={setOpenUpdate} comment={comment} user={user}/> : <UserCmtUpdate setOpenUpdate={setOpenUpdate} comment={comment} user={user}/>}
         </div>
     )
 }

@@ -9,9 +9,8 @@ function IconListPost(props) {
     return(
         <div style={{marginRight: '25px'}}>
             <Space direction='vertical'>
-                <IconText icon={<RemoveRedEyeOutlined fontSize="small" style={{color: 'var(--blue-color)'}}/>} text={`${post.userId}`}/>
-                <IconText icon={<Favorite fontSize="small" style={{color: 'var(--pink-color)'}}/>} text={`${post.reactions}`}/>
-                <AlertConfirmDeletePost/>
+                <IconText icon={<Favorite fontSize="small" style={{color: 'var(--pink-color)'}}/>} text={`${post.num_like}`}/>
+                <AlertConfirmDeletePost post={post}/>
             </Space>
         </div>
     )
