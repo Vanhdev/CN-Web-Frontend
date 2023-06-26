@@ -7,6 +7,8 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaCamera } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { addFavouriteTour } from "../../API";
 
 const domain = "http://localhost:8086/";
 
@@ -46,11 +48,16 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
 
 const TourBox = (props) => {
   const { tour } = props;
+  const currentUser = useSelector(state => state.auth.login.currentUser);
   const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
-  // console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
-  console.log(tour);
+
+  const handleClick = () => {
+    console.log(currentUser?.accessToken, currentUser?.id, tour?.id);
+    currentUser ? addFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id) : navigate("/login");
+  };
+
   return <>
     <Col span={8} className="p-8">
       <Row className="w-full relative flex justify-center">
@@ -71,7 +78,7 @@ const TourBox = (props) => {
             Sale off
           </Col>
           <Col span={3} className="flex justify-end">
-            <Button className="border-none hover:border-none flex items-center p-0">
+            <Button className="border-none hover:border-none flex items-center p-0" onClick={handleClick}>
               <AiOutlineHeart size={30} />
             </Button>
           </Col>
