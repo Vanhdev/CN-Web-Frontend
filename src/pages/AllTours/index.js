@@ -22,7 +22,7 @@ const HomePage = () => {
   const [tourList, setTourList] = useState([]);
   const [topic, setTopic] = useState('2');
   const [place, setPlace] = useState(0);
-  const [placeName, setPlaceName] = useState('');
+  const [placeName, setPlaceName] = useState({});
   const [pos, setPos] = useState(0);
 
   const currentUser = useSelector(state => state.auth.login.currentUser);
@@ -32,7 +32,7 @@ const HomePage = () => {
       getAllTour().then(res => setTourList(res.data.filter(item => item.type_id === parseInt(topic))));
     else {
       getAllTour().then(res => setTourList(res.data.filter(item => item.place.id === place)));
-      getPlaceById(place).then(data => setPlaceName(data.place.name));
+      getPlaceById(place).then(data => setPlaceName(data.place));
     }
   },[topic, place]);
 
@@ -58,9 +58,14 @@ const HomePage = () => {
         {topicList[topic]}
       </Col>
       :
+      <>
       <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "25px", fontWeight: "bold"}}>
-        Các địa điểm nổi tiếng tại: <Row className="w-fit ml-2" style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>{placeName}</Row>
+        Các địa điểm nổi tiếng tại: <Row className="w-fit ml-2" style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>{placeName.name}</Row>
       </Col>
+      <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "20px"}}>
+        {placeName.description}
+      </Col>
+      </>
       }
       {pos < tourList.length ? <TourBox tour={tourList[pos]} /> : null}
       {pos+1 < tourList.length ? <TourBox tour={tourList[pos+1]} /> : null}

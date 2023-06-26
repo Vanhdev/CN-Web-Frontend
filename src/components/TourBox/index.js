@@ -68,7 +68,7 @@ const TourBox = (props) => {
             className="text-white text-base flex items-center justify-center rounded-lg p-1" 
             style={{fontFamily: "Signika", backgroundColor: "#DC4E62"}}
           >
-            8% off
+            Sale off
           </Col>
           <Col span={3} className="flex justify-end">
             <Button className="border-none hover:border-none flex items-center p-0">
@@ -95,13 +95,13 @@ const TourBox = (props) => {
               <Col span={10} pull={4} style={{fontFamily: "Signika"}}><FaCamera /></Col>
             </Row> :
             <Row>
-              <StarRating rating5={400} size={10} />
+              <StarRating rating5={tour?.pointTour} size={10} />
             </Row>
           }
         </Col>
       </Row>
-      <Row className="pt-8 -translate-y-5 rounded-b-lg" style={{boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
-        <Row className="p-5"> 
+      <Row className="pt-8 -translate-y-5 rounded-b-lg w-full" style={{boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
+        <Row className="p-5 w-full"> 
           <Col span={24} style={{fontFamily: "Signika", fontSize: 23}}>{tour?.name ?? "asd"}</Col>
           <Row className="w-full">
             <Col className="flex items-center"><MdOutlineLocationOn color="#ABB8C3" size={18} /></Col>
