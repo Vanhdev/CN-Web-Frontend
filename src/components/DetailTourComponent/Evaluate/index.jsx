@@ -11,6 +11,8 @@ function Evaluate() {
 
     const allRates = useSelector(state => state.tour.allRates);
 
+    console.log("length:" + allRates?.rates?.length);
+
     useEffect( () => {
         let position = 0;
         let room = 0;
@@ -34,7 +36,9 @@ function Evaluate() {
             <div className="wrap-all-rate">
                 <div className="final-rate">
                     <Space size={0} className="rate">
-                        <h2 className="rate-number">{allRates?.rates?.length !== 0 ? parseFloat(((position + service + room + price)/4).toFixed(1)) : '5.0'}</h2>/5
+                        <h2 className="rate-number">
+                            {allRates?.rates?.length ? parseFloat(((position + service + room + price)/4).toFixed(1)) : "0.0"}
+                        </h2>/5
                     </Space>
                     <div>Give me some feedbacks, we give you satisfaction!</div>
                 </div>

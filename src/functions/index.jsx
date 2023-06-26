@@ -1,6 +1,6 @@
 export const ConvertLink = (text) => {
     const num_link = text.split('\\')[1];
-    return `http://localhost:3005/uploads/${num_link}`;
+    return `http://localhost:8086/uploads/${num_link}`;
 }
 
 export const ConvertDate = (string_date) => {

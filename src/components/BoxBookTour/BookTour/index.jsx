@@ -11,7 +11,6 @@ import { userBookTour } from "../../../API";
 
 function BookTour(props) {
     const {detailTour} = props;
-    const tour = useSelector(state => state.tour);
     const user = useSelector( state => state.auth.login?.currentUser);
 
     const [dateStart, setDateStart] = useState("");
@@ -39,7 +38,7 @@ function BookTour(props) {
 
     useEffect(() => {
         function calculateTotalMoney() {
-            const total = (totalAdult + totalTeenager + totalBaby + 10)* (detailTour.voucher.discount)/100;
+            const total = (totalAdult + totalTeenager + totalBaby + 10)* (100 - detailTour.voucher.discount)/100;
             setTotal(total);
         }
 

@@ -51,11 +51,6 @@ function HeaderUs() {
                             className="button color-hover"
                             style={colorBlack}
                         >Forum</Button>                  
-                        <Button 
-                            type="link" 
-                            className="button color-hover"
-                            style={colorBlack}
-                        >My Tours</Button>                  
                     </Space>
                     <Space size={-15}>
                         <Avatar src={avatar} size={50} className="avatar"></Avatar>

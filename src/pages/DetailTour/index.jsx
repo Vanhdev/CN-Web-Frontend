@@ -135,11 +135,7 @@ function DetailTour() {
                                     <div className="wrap-all-services">
                                         <div className="common-title">Bao gồm các dịch vụ</div>
                                         <div className='all-services'>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
+                                            <Service desc={tour.service.name}/>
                                         </div>
                                     </div>
                                     <Divider/>
