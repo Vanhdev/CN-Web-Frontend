@@ -7,20 +7,20 @@ import { getAllPlace } from "../../../../API";
 
 const domain = "http://localhost:8086/";
 
-const PerfectDestination = () => {
+const PerfectDestination = (props) => {
+  const { setPlace } = props;
   const [pos, setPos] = useState(0);
   const [locationList, setLocationList] = useState([]);
   useState(() => {
     getAllPlace().then(data => setLocationList(data.map(item => {
       const src = domain + item?.img?.image_url.replace("\\", "/");
       return {
+        id: item.id,
         src: src,
         caption: item.name
       };
     })));
   },[]);
-
-  console.log(locationList[(pos+1)%(locationList.length)]);
 
   return <>
     <Row className="w-full">
@@ -32,17 +32,23 @@ const PerfectDestination = () => {
             ĐÂY LÀ NHỮNG ĐIỂM ĐẾN VÔ CÙNG NỔI BẬT, CÓ CÁC HOẠT ĐỘNG VÀ TRẢI NGHIỆM THÚ VỊ, CÙNG VỚI CÁC TIỆN NGHI VÀ DỊCH VỤ CHẤT LƯỢNG ĐỂ ĐẢM BẢO DU KHÁCH CÓ MỘT KỲ NGHỈ TUYỆT VỜI.
           </Row>
           <Row className="w-2/3 pl-5 pr-9 flex items-center relative">
-            <Col span={8} className="px-4 relative flex justify-center">
-              <Image src={locationList[pos]?.src} width={"100%"} height={"400px"} preview={false} className="rounded-xl" />
-              <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[pos]?.caption}</Row>
+            <Col span={8} className="px-4">
+              <Button className="w-full h-full border-none m-0 p-0 relative flex justify-center" onClick={() => setPlace(locationList[pos]?.id)}>
+                <Image src={locationList[pos]?.src} width={"100%"} height={"400px"} preview={false} className="rounded-xl" />
+                <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[pos]?.caption}</Row>
+              </Button>
             </Col>
             <Col span={8} className="px-4 relative flex justify-center">
-              <Image src={locationList[(pos+1)%(locationList.length)]?.src} width={"100%"} height={"400px"}  preview={false} className="rounded-xl" />
-              <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[(pos+1)%(locationList.length)]?.caption}</Row>
+              <Button className="w-full h-full border-none m-0 p-0 relative flex justify-center" onClick={() => setPlace(locationList[(pos+1)%(locationList.length)]?.id)}>
+                <Image src={locationList[(pos+1)%(locationList.length)]?.src} width={"100%"} height={"400px"}  preview={false} className="rounded-xl" />
+                <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[(pos+1)%(locationList.length)]?.caption}</Row>
+              </Button>
             </Col>
             <Col span={8} className="px-4 relative flex justify-center">
-              <Image src={locationList[(pos+2)%(locationList.length)]?.src} width={"100%"} height={"400px"}  preview={false} className="rounded-xl" />
-              <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[(pos+2)%(locationList.length)]?.caption}</Row>
+              <Button className="w-full h-full border-none m-0 p-0 relative flex justify-center" onClick={() => setPlace(locationList[(pos+2)%(locationList.length)]?.id)}>
+                <Image src={locationList[(pos+2)%(locationList.length)]?.src} width={"100%"} height={"400px"}  preview={false} className="rounded-xl" />
+                <Row className="absolute bottom-0 p-3 text-white text-2xl font-bold" style={{fontFamily: "Signika"}}>{locationList[(pos+2)%(locationList.length)]?.caption}</Row>
+              </Button>
             </Col>
             <Button 
               className="w-10 h-10 rounded-full absolute left-4 bg-slate-300 border-none flex items-center justify-center"

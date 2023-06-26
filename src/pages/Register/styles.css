@@ -1,0 +1,13 @@
+.white-datepicker .ant-picker-input>input {
+    color: white;
+}
+
+.white-datepicker .ant-picker-input>input::placeholder {
+    font-weight: normal;
+    font-family: "Signika";
+    color: white;
+}
+
+.white-datepicker .ant-picker-suffix {
+    color: white;
+}

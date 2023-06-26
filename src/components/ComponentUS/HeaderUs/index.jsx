@@ -50,28 +50,35 @@ function HeaderUs() {
                             onClick={handleForum} 
                             className="button color-hover"
                             style={colorBlack}
-                        >Forum</Button>                  
-                        <Button 
-                            type="link" 
-                            className="button color-hover"
-                            style={colorBlack}
-                        >My Tours</Button>                  
+                        >Forum</Button>  
+                        {user ? 
+                            <Button 
+                                type="link" 
+                                className="button color-hover"
+                                style={colorBlack}
+                            >My Tours</Button>                  
+                        : null}
                     </Space>
-                    <Space size={-15}>
-                        <Avatar src={avatar} size={50} className="avatar"></Avatar>
-                        <Button 
-                            type="text" 
-                            style={{color: 'var(--blue-color)'}}
-                            onClick={handlePersonalInformation}
-                        >{user.name}</Button>
-                    </Space>
-                    <Space onClick={handleLogout}>
-                        <ExitToAppIcon 
-                        sx={{
-                            cursor: 'pointer',
-                        }}
-                        />
-                    </Space>
+                    {user ? 
+                        <>
+                            <Space size={-15}>
+                                <Avatar src={avatar} size={50} className="avatar"></Avatar>
+                                <Button 
+                                    type="text" 
+                                    style={{color: 'var(--blue-color)'}}
+                                    onClick={handlePersonalInformation}
+                                >{user?.name}</Button>
+                            </Space>
+                            <Space onClick={handleLogout}>
+                                <ExitToAppIcon 
+                                sx={{
+                                    cursor: 'pointer',
+                                }}
+                                />
+                            </Space>
+                        </>
+                    : null
+                    }
                 </Space>
             </Space>
         </div>    

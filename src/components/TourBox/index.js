@@ -50,6 +50,7 @@ const TourBox = (props) => {
   // console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
+  console.log(tour);
   return <>
     <Col span={8} className="p-8">
       <Row className="w-full relative flex justify-center">

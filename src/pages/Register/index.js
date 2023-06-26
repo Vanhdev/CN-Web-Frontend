@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { registerUser } from "../../API";
 import dayjs from "dayjs";
+import "./styles.css";
 
 const SigninModal = () => {
     const [name, setName] = useState('');
@@ -71,7 +72,7 @@ const SigninModal = () => {
                     <Form.Item name="birthday" className="m-0">
                       <DatePicker
                         placeholder="Ngày sinh"
-                        className="h-full text-white bg-transparent border-none placeholder:text-white"
+                        className="h-full w-full bg-transparent border-none white-datepicker"
                         size="large"
                         onChange={(date, dateString) => setDate(dateString)}
                       />
