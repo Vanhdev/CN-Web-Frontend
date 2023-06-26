@@ -452,6 +452,7 @@ export const getBookTour = (id, token) => {
     });
 }
 
+
 export const deleteBookedTour = async (accessToken, dispatch, idBooking) => {
     try{
         await axios.delete(`http://localhost:8086/users/cancel-book-tour?idBooking=${idBooking}`, {
@@ -500,5 +501,8 @@ export const updateRateByUser = async (accessToken, dispatch, newComment, idTour
     }
 }
 
-
+export const getPlaceById = (id) => {
+    return axios.get('http://localhost:8086/admin/get-place?id=' + id)
+        .then(res => res.data);
+}
 
