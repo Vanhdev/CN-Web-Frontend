@@ -24,7 +24,7 @@ const PerfectDestination = (props) => {
 
   return <>
     <Row className="w-full">
-      <Col span={24} className="text-xl p-5" style={{fontFamily: "Signika"}}>Perfect Destination!</Col>
+      <Col span={24} className="text-xl p-5" style={{fontFamily: "Signika", fontWeight: "bold"}}>Perfect Destination!</Col>
       <Row className="w-full relative">
         <Image src={pdBg} width={"50%"} preview={false} />
         <Row className="w-full h-full absolute top-0 left-0">

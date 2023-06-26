@@ -7,6 +7,8 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaCamera } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { addFavouriteTour } from "../../API";
 
 const domain = "http://localhost:8086/";
 
@@ -46,11 +48,16 @@ const StarRating = ({ rating5 = 500, size = 50, ...props }) => {
 
 const TourBox = (props) => {
   const { tour } = props;
+  const currentUser = useSelector(state => state.auth.login.currentUser);
   const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
-  // console.log(imageUrl);
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
-  console.log(tour);
+
+  const handleClick = () => {
+    console.log(currentUser?.accessToken, currentUser?.id, tour?.id);
+    currentUser ? addFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id) : navigate("/login");
+  };
+
   return <>
     <Col span={8} className="p-8">
       <Row className="w-full relative flex justify-center">
@@ -68,10 +75,10 @@ const TourBox = (props) => {
             className="text-white text-base flex items-center justify-center rounded-lg p-1" 
             style={{fontFamily: "Signika", backgroundColor: "#DC4E62"}}
           >
-            8% off
+            Sale off
           </Col>
           <Col span={3} className="flex justify-end">
-            <Button className="border-none hover:border-none flex items-center p-0">
+            <Button className="border-none hover:border-none flex items-center p-0" onClick={handleClick}>
               <AiOutlineHeart size={30} />
             </Button>
           </Col>
@@ -95,13 +102,13 @@ const TourBox = (props) => {
               <Col span={10} pull={4} style={{fontFamily: "Signika"}}><FaCamera /></Col>
             </Row> :
             <Row>
-              <StarRating rating5={400} size={10} />
+              <StarRating rating5={tour?.pointTour} size={10} />
             </Row>
           }
         </Col>
       </Row>
-      <Row className="pt-8 -translate-y-5 rounded-b-lg" style={{boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
-        <Row className="p-5"> 
+      <Row className="pt-8 -translate-y-5 rounded-b-lg w-full" style={{boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"}}>
+        <Row className="p-5 w-full"> 
           <Col span={24} style={{fontFamily: "Signika", fontSize: 23}}>{tour?.name ?? "asd"}</Col>
           <Row className="w-full">
             <Col className="flex items-center"><MdOutlineLocationOn color="#ABB8C3" size={18} /></Col>

@@ -10,31 +10,6 @@ import MultipeSelect from "../../../../components/MultipeSelect";
 
 const textStyles = {fontFamily: "Signika", fontSize: "16px"};
 
-const ImportantBox = () => {
-    const [isEdit, setIsEdit] = useState(true);
-    return <>
-        {
-            isEdit
-            ?
-                <>
-                    <Input.TextArea className="w-full mb-1" />
-                    <Row className="w-full flex justify-end mb-3">
-                        <Button className="border-none p-0 m-0">
-                            <BsFillCheckCircleFill size={25} color="#103479" />
-                        </Button>
-                    </Row>
-                </>
-            :
-                <Row className="w-full mb-2 flex justify-between items-center">
-                    <Row className="w-11/12" style={{...textStyles, color: "#DC4E62"}}>asdsd</Row>
-                    <Button className="border-none p-0 m-0" onClick={() => setIsEdit(true)}>
-                            <BsPencil size={20} />
-                    </Button>  
-                </Row>
-        }
-    </>;
-}
-
 const AddTour = () => {
     const accessToken = useSelector(state => state.auth.login.currentUser.accessToken);
     const navigate = useNavigate();
