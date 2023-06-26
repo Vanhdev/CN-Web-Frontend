@@ -3,29 +3,30 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import avatar from '../../../assets/images/main-avatar.png';
 import { updateCommentTour } from "../../../redux/commentsTourSlice";
+import { updateRateByUser } from "../../../API";
 
 
 function UpdateComment(props) {
     const {setShowUpdate, item, index} = props;
+    const user = useSelector( state => state.auth.login?.currentUser);
 
-    const [positionValue, setPositionValue] = useState(item.positionValue);
-    const [roomValue, setRoomValue] = useState(item.roomValue);
-    const [priceValue, setPriceValue] = useState(item.priceValue);
-    const [serviceValue, setServiceValue] = useState(item.serviceValue);
-    const [comment, setComment] = useState(item.comment);
+    const [positionValue, setPositionValue] = useState(item.location_rate);
+    const [roomValue, setRoomValue] = useState(item.infrastructure_rate);
+    const [priceValue, setPriceValue] = useState(item.price_rate);
+    const [serviceValue, setServiceValue] = useState(item.service_rate);
 
     const dispatch = useDispatch();
 
     const handleSaveComment = () => {
         const newComment = {
-            positionValue: positionValue,
-            roomValue: roomValue,
-            priceValue: priceValue,
-            serviceValue: serviceValue,
-            comment: comment,
-            index: index
+            user_id: item?.user_id,
+            tour_id: item?.tour_id,
+            location_rate: positionValue,
+            infrastructure_rate: roomValue,
+            price_rate: priceValue,
+            service_rate: serviceValue,
         }
-        dispatch(updateCommentTour(newComment));
+        // updateRateByUser(user?.accessToken, dispatch, newComment, item?.tour_id, item?.user_id)
         setShowUpdate(false);
     }
 
