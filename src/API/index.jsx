@@ -453,3 +453,8 @@ export const getBookTour = (id, token) => {
     });
 }
 
+export const getPlaceById = (id) => {
+    return axios.get('http://localhost:8086/admin/get-place?id=' + id)
+        .then(res => res.data);
+}
+
