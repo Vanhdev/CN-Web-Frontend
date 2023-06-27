@@ -54,7 +54,7 @@ const authSlice = createSlice({
         
         updateUserSuccess: (state, action) => {
             state.login.currentUser = {...state.login.currentUser, ...action.payload};
-            console.log("current user: ", state.login.currentUser);
+            // console.log("current user: ", state.login.currentUser);
         }
     }
 })

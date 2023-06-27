@@ -10,7 +10,6 @@ function AllComments() {
     const user = useSelector( state => state.auth.login?.currentUser);
     const tour = useSelector( state => state.tour.tour);
     
-    
     const {id: idTour} = useParams();
     const [pageIDTour, setPageIDTour] = useState(idTour);
 

@@ -44,7 +44,7 @@ const MultipeSelect = ({setArrivalId}) => {
     }
   }, [value]);
 
-  console.log(value);
+  // console.log(value);
   return (
     <DebounceSelect
       mode="multiple"

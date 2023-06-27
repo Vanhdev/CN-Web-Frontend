@@ -88,7 +88,7 @@ export const updateUser = async (update_user, accessToken, dispatch) => {
             }
         });
         dispatch(updateUserSuccess(res.data.user));
-        console.log(res);
+        // console.log(res);
     }
     catch (err) {}
 }
@@ -322,7 +322,7 @@ export const userBookTour = async (accessToken, dispatch, new_tour_booking) => {
         const res = await axios.post(`http://localhost:8086/users/book-tour`, new_tour_booking, {
             headers: { token: `Bearer ${accessToken}` },
         });
-        console.log("tour booking", res.data.tourBooking);
+        // console.log("tour booking", res.data.tourBooking);
         dispatch(bookingTour(res.data.tourBooking));
     }
     catch (error) {
@@ -439,7 +439,7 @@ export const imgSourceToFile = (url) => {
 
     return toDataURL(url)
         .then(dataUrl => {
-            // console.log('Here is Base64 Url', dataUrl)
+            // // console.log('Here is Base64 Url', dataUrl)
             return dataURLtoFile(dataUrl, "imageName.jpg");
         });
 }

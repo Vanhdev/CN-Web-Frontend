@@ -8,7 +8,7 @@ const qnaSlice = createSlice({
     },
     reducers: {
         createQuestion: (state, action) => {
-            console.log("action.payload: ", action.payload);
+            // console.log("action.payload: ", action.payload);
             state.newQuestion = action.payload;
             state.allQuestions = [...state.allQuestions, state.newQuestion];
         },

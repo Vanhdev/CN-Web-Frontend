@@ -8,7 +8,7 @@ function AskBox() {
     const [question, setQuestion] = useState("");
 
     const user = useSelector(state => state.auth.login?.currentUser);
-    console.log("user in ask box: ", user);
+    // console.log("user in ask box: ", user);
 
     const dispatch = useDispatch();
 

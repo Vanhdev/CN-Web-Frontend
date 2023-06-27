@@ -19,11 +19,11 @@ const LoginModal = () => {
 
     const [form] = Form.useForm();
     const onFinish = () => {
-      // console.log(form.getFieldsValue());
-      // console.log("Login!!!");
+      // // console.log(form.getFieldsValue());
+      // // console.log("Login!!!");
     };
     const onFinishFailed = (err) => {
-      // console.log("Error: ", err);
+      // // console.log("Error: ", err);
     };
 
     const handleLogin = (e) => {

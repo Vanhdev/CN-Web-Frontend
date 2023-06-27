@@ -213,7 +213,7 @@ const TourStock = () => {
         }
     ];
 
-    console.log(dataSource);
+    // console.log(dataSource);
 
     return(
         <>

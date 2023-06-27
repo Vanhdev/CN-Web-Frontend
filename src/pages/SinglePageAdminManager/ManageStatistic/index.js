@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col } from "antd";
 import "../../../assets/fonts.css";
 import { useSelector } from "react-redux";
+import { getAllBooking, getNumberOfBookingTours, getNumberOfTours, getProfits } from "../../../API";
 
 const ManageStatistic = () => {
     const accessToken = useSelector(state => state.auth.login.currentUser.accessToken);
+    const [countTour, setCountTour] = useState(0);
+    const [countBookingTour, setCountBookingTour] = useState(0);
+    const [profit, setProfit] = useState(0);
+    const [countUser, setCountUser] = useState(0);
+
+    useEffect(() => {
+        getNumberOfTours(accessToken).then(data => setCountTour(data.data.count));
+        getNumberOfBookingTours(accessToken).then(data => setCountBookingTour(data.data.booking_tours_count));
+        getAllBooking(accessToken).then(data => {
+            const userFromData = data.data;
+            let uniqueUsers = [];
+            let emailSet = new Set();
+
+            userFromData.forEach(item => {
+                if(!emailSet.has(item.email)){
+                    emailSet.add(item.email);
+                    uniqueUsers.push(item);
+                }
+            })
+            setCountUser(uniqueUsers.length);
+        });
+        getProfits(accessToken).then(data => setProfit(data.data.profits));
+    },[]);
+
     return(
         <>
             <Row className="w-full px-60 py-10">
@@ -14,7 +39,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        1204
+                        {countTour}
                     </Row>
                 </Col>
                 <Col span={8} className="px-5">
@@ -23,7 +48,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        1204
+                        {countBookingTour}
                     </Row>
                 </Col>
                 <Col span={8} className="pl-5">
@@ -32,7 +57,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        1204
+                        {countUser}
                     </Row>
                 </Col>
                 <Col span={24} className="mt-10">
@@ -41,7 +66,7 @@ const ManageStatistic = () => {
                         className="w-full flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        $200.00
+                        ${profit}
                     </Row>
                 </Col>
             </Row>

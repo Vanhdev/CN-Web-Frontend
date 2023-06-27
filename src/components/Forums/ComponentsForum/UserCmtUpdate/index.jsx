@@ -22,7 +22,7 @@ function UserCmtUpdate(props) {
         setOpenUpdate(false);
     }
 
-    console.log(user.accessToken);
+    // console.log(user.accessToken);
 
     return(
         <div className="user-cmt-update">

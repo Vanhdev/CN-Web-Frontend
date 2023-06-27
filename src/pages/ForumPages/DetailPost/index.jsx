@@ -18,7 +18,7 @@ function DetailPost() {
     const [loading, setLoading] = useState(false);
     const [pageID, setPageID] = useState(null);
 
-    console.log(detailPost);
+    // console.log(detailPost);
 
     useEffect(() => {
         const fetchDataAndUpdateState = () => {
