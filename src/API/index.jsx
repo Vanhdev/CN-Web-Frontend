@@ -536,8 +536,20 @@ export const addFavouriteTour = (token, userId, tourId) => {
     });
 }
 
+export const delFavouriteTour = (token, userId, tourId) => {
+    return axios.delete('http://localhost:8086/users/delete-fav-tour?idTour=' + tourId + '&idUser=' + userId, {
+        headers: { token: `Bearer ${token}` },
+    });
+}
+
 export const saveTour = (token, tourId, data) => {
     return axios.put('http://localhost:8086/admin/edit-tour?id=' + tourId, data, {
         headers: { token: `Bearer ${token}` },
     });
+}
+
+export const getAllFavTourId = (token, userId, setIdList) => {
+    return axios.get('http://localhost:8086/users/get-fav-tour?idUser=' + userId, {
+        headers: { token: `Bearer ${token}` },
+    }).then(data => data.data.favTour).then(data => setIdList((data ?? []).map(item => item.tour_id)));
 }

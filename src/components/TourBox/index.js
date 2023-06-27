@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bg from "../../assets/images/alltour-bg.jpg";
-import { Image, Row, Col, Button, Divider } from "antd";
+import { Image, Row, Col, Button, Divider, message } from "antd";
 import "../../assets/fonts.css";
 import { AiOutlineHeart, AiTwotoneCalendar } from "react-icons/ai";
 import { MdOutlineLocationOn } from "react-icons/md";
@@ -8,7 +8,7 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FaStar, FaCamera } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { addFavouriteTour } from "../../API";
+import { addFavouriteTour, delFavouriteTour, getAllFavTourId } from "../../API";
 
 const domain = "http://localhost:8086/";
 
@@ -52,10 +52,25 @@ const TourBox = (props) => {
   const imageUrl = domain + tour?.img?.image_url.replace("\\", "/");
   const [hover, setHover] = useState(false);
   const navigate = useNavigate();
+  const [idList, setIdList] = useState([]);
+
+  useEffect(() => {
+    getAllFavTourId(currentUser?.accessToken, currentUser?.id, setIdList);
+  }, []);
 
   const handleClick = () => {
     // console.log(currentUser?.accessToken, currentUser?.id, tour?.id);
-    currentUser ? addFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id) : navigate("/login");
+    currentUser ? 
+      idList.includes(tour?.id) 
+      ? 
+        delFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id)
+          .then(() => getAllFavTourId(currentUser?.accessToken, currentUser?.id, setIdList))
+          .then(() => message.success("Bỏ yêu thích tour thành công!")) 
+        : 
+        addFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id)
+          .then(() => getAllFavTourId(currentUser?.accessToken, currentUser?.id, setIdList))
+          .then(() => message.success("Đã thêm tour vào mục yêu thích!")) 
+      : navigate("/login");
   };
 
   return <>
@@ -79,7 +94,7 @@ const TourBox = (props) => {
           </Col>
           <Col span={3} className="flex justify-end">
             <Button className="border-none hover:border-none flex items-center p-0" onClick={handleClick}>
-              <AiOutlineHeart size={30} />
+              <AiOutlineHeart size={30} color={idList.includes(tour?.id) ? "#DC4E62" : "black"} />
             </Button>
           </Col>
         </Row>

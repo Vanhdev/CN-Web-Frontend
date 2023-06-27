@@ -24,17 +24,23 @@ const HomePage = () => {
   const [place, setPlace] = useState(0);
   const [placeName, setPlaceName] = useState({});
   const [pos, setPos] = useState(0);
+  const [value, setValue] = useState('');
 
   const currentUser = useSelector(state => state.auth.login.currentUser);
 
   useEffect(() => {
-    if(place === 0)
-      getAllTour().then(res => setTourList(res.data.filter(item => item.type_id === parseInt(topic))));
-    else {
-      getAllTour().then(res => setTourList(res.data.filter(item => item.place.id === place)));
-      getPlaceById(place).then(data => setPlaceName(data.place));
+    if(value === '')
+    {
+      if(place === 0)
+        getAllTour().then(res => setTourList(res.data.filter(item => item.type_id === parseInt(topic))));
+      else {
+        getAllTour().then(res => setTourList(res.data.filter(item => item.place.id === place)));
+        getPlaceById(place).then(data => setPlaceName(data.place));
+      }
+    }else {
+      getAllTour().then(res => setTourList(res.data.filter(item => item.name.includes(value))));
     }
-  },[topic, place]);
+  },[topic, place, value]);
 
   const itemRender = (_, type, originalElement) => {
     if (type === 'prev') {
@@ -49,23 +55,29 @@ const HomePage = () => {
   return <>
     <Row className="w-full relative">
       <Image src={currentUser ? bgLogin : bg} width={"100%"} preview={false} />
-      <TopBar className="absolute top-0 left-0 right-0 mt-3" currentUser={currentUser} />
+      <TopBar className="absolute top-0 left-0 right-0 mt-3" currentUser={currentUser} setValue={setValue} />
     </Row>
-    {place === 0 ? <TopicBox topicList={topicList} topic={topic} setTopic={setTopic} /> : null}
+    {(place === 0 && value === '') ? <TopicBox topicList={topicList} topic={topic} setTopic={setTopic} /> : null}
     <Row className="w-full p-5">
-      {place === 0 ?
-      <Col span={24} style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>
-        {topicList[topic]}
-      </Col>
-      :
-      <>
-      <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "25px", fontWeight: "bold"}}>
-        Các địa điểm nổi tiếng tại: <Row className="w-fit ml-2" style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>{placeName.name}</Row>
-      </Col>
-      <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "20px"}}>
-        {placeName.description}
-      </Col>
-      </>
+      {value !== '' 
+        ? 
+          <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "25px", fontWeight: "bold"}}>
+            Kết quả tìm kiếm: <Row className="w-fit ml-2" style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>{value}</Row>
+          </Col>
+        :
+          place === 0 ?
+          <Col span={24} style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>
+            {topicList[topic]}
+          </Col>
+          :
+          <>
+          <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "25px", fontWeight: "bold"}}>
+            Các địa điểm nổi tiếng tại: <Row className="w-fit ml-2" style={{fontFamily: "Signika", color: "#4B59D7", fontSize: "25px", fontWeight: "bold"}}>{placeName.name}</Row>
+          </Col>
+          <Col span={24} className="flex" style={{fontFamily: "Signika", fontSize: "20px"}}>
+            {placeName.description}
+          </Col>
+          </>
       }
       {pos < tourList.length ? <TourBox tour={tourList[pos]} /> : null}
       {pos+1 < tourList.length ? <TourBox tour={tourList[pos+1]} /> : null}
@@ -85,14 +97,6 @@ const HomePage = () => {
         onChange={(pageNumber) => setPos(6*(pageNumber - 1))}
       />
     </Row>
-    {/* <Row className="w-full p-5">
-      <Col span={24} className="text-xl" style={{fontFamily: "Signika"}}>Điểm đến mới cập nhật!</Col>
-      <Row className="w-full">
-        {tourList.length > 2 ? <TourBox tour={tourList[tourList.length - 3]} /> : null}
-        {tourList.length > 1 ? <TourBox tour={tourList[tourList.length - 2]} /> : null}
-        {tourList.length > 0 ? <TourBox tour={tourList[tourList.length - 1]} /> : null}
-      </Row>
-    </Row> */}
     <PerfectDestination setPlace={setPlace} />
     <Footer />
   </>

@@ -39,7 +39,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        {countTour}
+                        {countTour ?? 0}
                     </Row>
                 </Col>
                 <Col span={8} className="px-5">
@@ -48,7 +48,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        {countBookingTour}
+                        {countBookingTour ?? 0}
                     </Row>
                 </Col>
                 <Col span={8} className="pl-5">
@@ -57,7 +57,7 @@ const ManageStatistic = () => {
                         className="flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#5A62AA", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        {countUser}
+                        {countUser ?? 0}
                     </Row>
                 </Col>
                 <Col span={24} className="mt-10">
@@ -66,7 +66,7 @@ const ManageStatistic = () => {
                         className="w-full flex items-center justify-center text-white text-6xl" 
                         style={{backgroundColor: "#DC4E62", height: "180px", fontFamily: "Signika", fontWeight: 700}}
                     >
-                        ${profit}
+                        ${profit ?? 0.00}
                     </Row>
                 </Col>
             </Row>

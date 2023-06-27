@@ -1,5 +1,5 @@
 import { Input, Row, Col, Button, Divider } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../../../components/Logo";
 import { useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
@@ -8,7 +8,8 @@ import { TbLogout } from "react-icons/tb";
 import { logout } from "../../../../redux/authSlice";
 
 const TopBar = (props) => {
-  const { className, currentUser } = props;
+  const { className, currentUser, setValue } = props;
+  const [text, setText] = useState('');
 
   // // console.log(currentUser);
 
@@ -24,8 +25,9 @@ const TopBar = (props) => {
         <Input
           className="rounded-xl h-10 placeholder:text-black p-5" 
           placeholder="Nhập nơi bạn muốn tới?" 
+          onChange={(e) => setText(e.target.value)}
         />
-        <Button className="absolute right-0 m-5 border-none p-0 rounded-full">
+        <Button className="absolute right-0 m-5 border-none p-0 rounded-full" onClick={() => setValue(text)}>
           <MdSearch size={15} />
         </Button>
       </Col>
