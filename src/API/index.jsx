@@ -6,6 +6,7 @@ import { createComment, deleteCommentPost, getAllCmtsByID, updateCommentPost } f
 import { answerByAdmin, createQuestion, getAllQuestions } from "../redux/qnaSlice";
 import { bookingTour, createNewRate, deleteTourBooked, deleteTourLoved, detailTour, getBookedTour, getLovedTour, getRates, updateRate } from "../redux/tourSlice";
 import { ActionBox, typeArray } from "../pages/SinglePageAdminManager/ManageTour/TourStock";
+import { message } from "antd";
 
 export const getAllPosts = () => {
     return fetch('https://dummyjson.com/posts')
@@ -66,6 +67,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     }
     catch(err) {
         dispatch(loginFailed());
+        message.error("Email hoặc mật khẩu không đúng!!!");
     }
 }
 

@@ -65,6 +65,7 @@ const LoginModal = () => {
                 <Form.Item name="password" className="m-0">
                   <Input
                     placeholder="Mật khẩu"
+                    type="password"
                     className="h-full text-white bg-transparent border-none placeholder:text-white"
                     size="large"
                     onChange={(e) => setPassword(e.target.value)}
