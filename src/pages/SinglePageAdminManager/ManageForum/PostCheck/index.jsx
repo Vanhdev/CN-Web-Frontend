@@ -36,7 +36,7 @@ function PostCheck() {
             setLoading(false);
         }
 
-    }, [allPosts]);
+    }, []);
 
     const [searchResults, setSearchResults] = useState(allPosts);
 
