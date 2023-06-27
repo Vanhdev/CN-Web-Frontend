@@ -505,6 +505,26 @@ export const updateRateByUser = async (accessToken, dispatch, newComment, idTour
     }
 }
 
+export const changePassword = async (accessToken, dispatch, navigate, idUser, new_content) => {
+    try{
+        const res = await axios.put(`http://localhost:8086/auth/change-pass?id=${idUser}`, new_content, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        if(res.data.message === "Wrong password") {
+            alert("Your old password is incorrect!")
+        }
+        else if(res.data.message === "Wrong confirm password") {
+            alert("Your confirm password is incorrect!")
+        }
+        else if(res.data.message === "Update password successfully") {
+            navigate("/login")
+        }
+    }
+    catch (error) {
+        alert(error.message);
+    }
+}
+
 export const getPlaceById = (id) => {
     return axios.get('http://localhost:8086/admin/get-place?id=' + id)
       .then(res => res.data);
