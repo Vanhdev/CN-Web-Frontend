@@ -50,14 +50,7 @@ function HeaderUs() {
                             onClick={handleForum} 
                             className="button color-hover"
                             style={colorBlack}
-                        >Forum</Button>  
-                        {user ? 
-                            <Button 
-                                type="link" 
-                                className="button color-hover"
-                                style={colorBlack}
-                            >My Tours</Button>                  
-                        : null}
+                        >Forum</Button>                  
                     </Space>
                     {user ? 
                         <>

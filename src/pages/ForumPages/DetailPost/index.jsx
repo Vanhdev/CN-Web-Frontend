@@ -46,12 +46,6 @@ function DetailPost() {
         return <Spin></Spin>
     }
 
-    // console.log("pageID: " + pageID);
-
-    // console.log("detailPost: ", detailPost);
-
-    // console.log("all comments: ", allComments);
-
     return(
         <>
         {

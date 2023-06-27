@@ -4,7 +4,7 @@ import { acceptByAdmin, createPost, deletePost, getAllPostSuccess, getDetailPost
 import { ConvertDate, ConvertLink } from "../functions";
 import { createComment, deleteCommentPost, getAllCmtsByID, updateCommentPost } from "../redux/commentPostSlice";
 import { answerByAdmin, createQuestion, getAllQuestions } from "../redux/qnaSlice";
-import { bookingTour, createNewRate, detailTour, getBookedTour, getRates } from "../redux/tourSlice";
+import { bookingTour, createNewRate, deleteTourBooked, deleteTourLoved, detailTour, getBookedTour, getLovedTour, getRates, updateRate } from "../redux/tourSlice";
 import { ActionBox, typeArray } from "../pages/SinglePageAdminManager/ManageTour/TourStock";
 
 export const getAllPosts = () => {
@@ -336,7 +336,6 @@ export const getAllBookedTour = async (accessToken, dispatch, idUser) => {
         const res = await axios.get(`http://localhost:8086/users/get-book-tour?id=${idUser}`, {
             headers: { token: `Bearer ${accessToken}` },
         });
-        // console.log("all tours booking", res.data);
         dispatch(getBookedTour(res.data));
     }
     catch (error) {
@@ -455,6 +454,75 @@ export const getBookTour = (id, token) => {
     return axios.get('http://localhost:8086/users/get-book-tour?id=' + id, {
         headers: { token: `Bearer ${token}` },
     });
+}
+
+
+export const deleteBookedTour = async (accessToken, dispatch, idBooking) => {
+    try{
+        await axios.delete(`http://localhost:8086/users/cancel-book-tour?idBooking=${idBooking}`, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(deleteTourBooked(idBooking));
+    }
+    catch (error) {
+        
+    }
+}
+
+export const getAllLovedTour = async (accessToken, dispatch, idUser) => {
+    try{
+        const res = await axios.get(`http://localhost:8086/users/get-fav-tour?idUser=${idUser}`, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(getLovedTour(res.data.listFavTour));
+    }
+    catch (error) {
+        
+    }
+}
+
+export const deleteLovedTour = async (accessToken, dispatch, idTour, idUser) => {
+    try{
+        await axios.delete(`http://localhost:8086/users/delete-fav-tour?idTour=${idTour}&idUser=${idUser}`, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(deleteTourLoved(idTour));
+    }
+    catch (error) {
+        
+    }
+}
+
+export const updateRateByUser = async (accessToken, dispatch, newComment, idTour, idUser) => {
+    try{
+        await axios.put(`http://localhost:8086/users/edit-rate?idTour=${idTour}&idUser=${idUser}`, newComment, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        dispatch(updateRate(newComment));
+    }
+    catch (error) {
+        
+    }
+}
+
+export const changePassword = async (accessToken, dispatch, navigate, idUser, new_content) => {
+    try{
+        const res = await axios.put(`http://localhost:8086/auth/change-pass?id=${idUser}`, new_content, {
+            headers: { token: `Bearer ${accessToken}` },
+        });
+        if(res.data.message === "Wrong password") {
+            alert("Your old password is incorrect!")
+        }
+        else if(res.data.message === "Wrong confirm password") {
+            alert("Your confirm password is incorrect!")
+        }
+        else if(res.data.message === "Update password successfully") {
+            navigate("/login")
+        }
+    }
+    catch (error) {
+        alert(error.message);
+    }
 }
 
 export const getPlaceById = (id) => {

@@ -45,7 +45,7 @@ function BlueRiverHeader() {
                                 <Space size={15}>
                                     <Button type="link" onClick={handleAsking} className="button">Q & A</Button>                  
                                     <Button type="link" onClick={handleForum} className="button">Forum</Button>                  
-                                    <Button type="link" className="button">My Tours</Button>                  
+                                    {/* <Button type="link" className="button">My Tours</Button>                   */}
                                 </Space>
                                 <Space size={-15}>
                                     <Avatar src={avatar} size={50} className="avatar"></Avatar>

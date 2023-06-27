@@ -73,7 +73,7 @@ function DetailTour() {
                                     <div>
                                         <h1 style={{fontSize: 35}}>{tour.tour.name}</h1>
                                         <Space className="address" size={8}>
-                                            <Image src={location}></Image>
+                                            <Image src={location} preview={false}></Image>
                                             <div style={{color: 'var(--gray-color)', fontSize: '18px'}}>{tour.place.name}</div>
                                         </Space>
                                     </div>
@@ -81,28 +81,29 @@ function DetailTour() {
                                         src={ConvertLink(tour?.linkImg?.image_url)} 
                                         height={60}
                                         style={{borderRadius: '10px', marginTop: "5px", border: "2px solid #000"}}
+                                        preview={false}
                                     ></Image>
                                 </div>
                                 <div>
                                     <Carousel autoplay>
                                         <div>
                                             <div style={contentStyle}>
-                                                <Image src={timeToTravel}></Image>
+                                                <Image src={timeToTravel} preview={false}></Image>
                                             </div>
                                         </div>
                                         <div>
                                             <div style={contentStyle}>
-                                                <Image src={letGoTravel}></Image>
+                                                <Image src={letGoTravel} preview={false}></Image>
                                             </div>
                                         </div>
                                         <div>
                                             <div style={contentStyle}>
-                                                <Image src={timeToTravel}></Image>
+                                                <Image src={timeToTravel} preview={false}></Image>
                                             </div>
                                         </div>
                                         <div>
                                             <div style={contentStyle}>
-                                                <Image src={letGoTravel}></Image>
+                                                <Image src={letGoTravel} preview={false}></Image>
                                             </div>
                                         </div>
                                     </Carousel>
@@ -135,11 +136,7 @@ function DetailTour() {
                                     <div className="wrap-all-services">
                                         <div className="common-title">Bao gồm các dịch vụ</div>
                                         <div className='all-services'>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
-                                            <Service desc="Specialized bilingual guide"/>
+                                            <Service desc={tour.service.name}/>
                                         </div>
                                     </div>
                                     <Divider/>
@@ -185,7 +182,7 @@ function HeaderIcon({label, icon, desc}) {
 function Service({desc}) {
     return(
         <Space className="detail-service" size={10}>
-            <Image src={greenTick}></Image>
+            <Image src={greenTick} preview={false}></Image>
             <div>{desc}</div>
         </Space>    
     )

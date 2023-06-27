@@ -22,9 +22,9 @@ function AskHeader() {
                     <div className="adding-title">Welcome to ask us!</div>
                 </div>
             </Space>
-            <div style={{cursor: 'pointer'}}>
+            {/* <div style={{cursor: 'pointer'}}>
                 <ListNotification/>
-            </div>
+            </div> */}
         </div>
     )
 }

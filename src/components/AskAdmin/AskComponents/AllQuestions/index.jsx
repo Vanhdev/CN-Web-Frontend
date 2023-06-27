@@ -20,11 +20,13 @@ function AllQuestions() {
 
     }, [])
 
+    const [isRequestMade, setRequestMade] = useState(false);
     useEffect(() => {
         function createNewAllQuestions() {
-          if (user) {
+          if (user?.accessToken && !isRequestMade) {
             const idQuestion = "all";
             listQuestions(user?.accessToken, dispatch, idQuestion);
+            setRequestMade(true);
           }
         }
         createNewAllQuestions();

@@ -18,8 +18,8 @@ const SigninModal = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [date, setDate] = useState('');
+    const [phone_number, setPhoneNumber] = useState('');
+    const [date_of_birth, setDate] = useState('');
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const SigninModal = () => {
 
     const handleRegister = async (e) => {
       e.preventDefault();
-      const newUser = { name, email, password, phoneNumber, date };
+      const newUser = { name, email, password, phone_number, date_of_birth };
       registerUser(newUser, dispatch, navigate);
     };
 
