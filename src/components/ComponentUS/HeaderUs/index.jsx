@@ -52,21 +52,26 @@ function HeaderUs() {
                             style={colorBlack}
                         >Forum</Button>                  
                     </Space>
-                    <Space size={-15}>
-                        <Avatar src={avatar} size={50} className="avatar"></Avatar>
-                        <Button 
-                            type="text" 
-                            style={{color: 'var(--blue-color)'}}
-                            onClick={handlePersonalInformation}
-                        >{user.name}</Button>
-                    </Space>
-                    <Space onClick={handleLogout}>
-                        <ExitToAppIcon 
-                        sx={{
-                            cursor: 'pointer',
-                        }}
-                        />
-                    </Space>
+                    {user ? 
+                        <>
+                            <Space size={-15}>
+                                <Avatar src={avatar} size={50} className="avatar"></Avatar>
+                                <Button 
+                                    type="text" 
+                                    style={{color: 'var(--blue-color)'}}
+                                    onClick={handlePersonalInformation}
+                                >{user?.name}</Button>
+                            </Space>
+                            <Space onClick={handleLogout}>
+                                <ExitToAppIcon 
+                                sx={{
+                                    cursor: 'pointer',
+                                }}
+                                />
+                            </Space>
+                        </>
+                    : null
+                    }
                 </Space>
             </Space>
         </div>    

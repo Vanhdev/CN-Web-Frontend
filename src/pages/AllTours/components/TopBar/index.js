@@ -33,7 +33,7 @@ const TopBar = (props) => {
         currentUser
         ?
           <Col span={6} className="flex justify-end items-center">
-            <Button className="border-none text-white text-l" onClick={() => navigate("/company/about-us")}>{currentUser.name}'s Tours</Button>
+            <Button className="border-none text-white text-l" onClick={() => navigate("/personal-info")}>{currentUser.name}'s Profile</Button>
             <Row className="bg-white h-5" style={{width: "1px"}}></Row>
             <Button className="border-none text-white text-l" onClick={() => navigate("/forum")}>Forums</Button>
             <Row className="bg-white h-5" style={{width: "1px"}}></Row>

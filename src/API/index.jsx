@@ -33,7 +33,11 @@ export const getAllTour = () => {
     return axios.get("http://localhost:8086/admin/get-tour?id=all");
 }
 
-export const getAllTourTableData = (setData) => {
+export const getTourById = (id) => {
+    return axios.get("http://localhost:8086/admin/get-tour?id="+id);
+}
+
+export const getAllTourTableData = (setData, setOpen, setTour) => {
     getAllTour().then(res => res.data.map((item, index) => {
         return {
             key: item.id,
@@ -43,7 +47,7 @@ export const getAllTourTableData = (setData) => {
             duration: item.duration + " ngày",
             slots: item.slots + " người",
             place: item.place?.name,
-            action: <ActionBox id={item.id} setDataSource={setData} />
+            action: <ActionBox id={item.id} setDataSource={setData} setOpen={setOpen} setTour={setTour} />
         };
     })).then(data => setData(data));
 }
@@ -452,6 +456,7 @@ export const getBookTour = (id, token) => {
     });
 }
 
+
 export const deleteBookedTour = async (accessToken, dispatch, idBooking) => {
     try{
         await axios.delete(`http://localhost:8086/users/cancel-book-tour?idBooking=${idBooking}`, {
@@ -520,6 +525,19 @@ export const changePassword = async (accessToken, dispatch, navigate, idUser, ne
     }
 }
 
+export const getPlaceById = (id) => {
+    return axios.get('http://localhost:8086/admin/get-place?id=' + id)
+      .then(res => res.data);
+}
 
+export const addFavouriteTour = (token, userId, tourId) => {
+    return axios.post('http://localhost:8086/users/add-fav-tour', {user_id: userId, tour_id: tourId},{
+        headers: { token: `Bearer ${token}` },  
+    });
+}
 
-
+export const saveTour = (token, tourId, data) => {
+    return axios.put('http://localhost:8086/admin/edit-tour?id=' + tourId, data, {
+        headers: { token: `Bearer ${token}` },
+    });
+}

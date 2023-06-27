@@ -35,7 +35,7 @@ function FooterCompany() {
                             onClick={handleContactUs}
                             style={{fontFamily: "Signika"}}
                         >Contact Us</Button>
-                        <Button className="border-none text-white text-xl flex items-center font-bold mx-2" style={{fontFamily: "Signika"}}>Travel Guides</Button>
+                        <Button className="border-none text-white text-xl flex items-center font-bold mx-2" style={{ fontFamily: "Signika" }} onClick={() => navigate("/ask-something")}>Travel Guides</Button>
                         {/* <Button className="border-none text-white text-xl flex items-center font-bold mx-2" style={{fontFamily: "Signika"}}>Policy</Button> */}
                     </Row>
                     <Row className="text-xl text-white font-bold" style={{fontFamily: "Signika"}}>&copy; 2008-2023 TripWise. Made in Viet Nam.</Row>
