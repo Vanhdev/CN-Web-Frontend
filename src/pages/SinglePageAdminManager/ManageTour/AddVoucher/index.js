@@ -25,7 +25,7 @@ const VoucherBox = (props) => {
     }
 
     const handleDeleteVoucher = () => {
-        console.log(accessToken);
+        // console.log(accessToken);
         deleteVoucher(voucher.id, {}, accessToken).then(() => {
             getAllVoucher(accessToken).then(data => setVoucherList(data));
             message.success("Tắt voucher thành công!!!");

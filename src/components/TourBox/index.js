@@ -54,7 +54,7 @@ const TourBox = (props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(currentUser?.accessToken, currentUser?.id, tour?.id);
+    // console.log(currentUser?.accessToken, currentUser?.id, tour?.id);
     currentUser ? addFavouriteTour(currentUser?.accessToken, currentUser?.id, tour?.id) : navigate("/login");
   };
 

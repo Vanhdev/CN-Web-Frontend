@@ -18,7 +18,7 @@ function DetailPost() {
     const [loading, setLoading] = useState(false);
     const [pageID, setPageID] = useState(null);
 
-    console.log(detailPost);
+    // console.log(detailPost);
 
     useEffect(() => {
         const fetchDataAndUpdateState = () => {
@@ -46,11 +46,11 @@ function DetailPost() {
         return <Spin></Spin>
     }
 
-    console.log("pageID: " + pageID);
+    // console.log("pageID: " + pageID);
 
-    console.log("detailPost: ", detailPost);
+    // console.log("detailPost: ", detailPost);
 
-    console.log("all comments: ", allComments);
+    // console.log("all comments: ", allComments);
 
     return(
         <>

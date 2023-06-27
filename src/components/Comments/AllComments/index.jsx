@@ -8,7 +8,7 @@ function AllComments() {
     const allRates = useSelector(state => state.tour.allRates);
     const user = useSelector( state => state.auth.login?.currentUser);
     const tour = useSelector( state => state.tour.tour);
-    console.log("see all rates: ",allRates);
+    // console.log("see all rates: ",allRates);
     const userValues = [];
 
     useEffect(() => {

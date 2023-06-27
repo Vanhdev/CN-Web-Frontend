@@ -28,7 +28,7 @@ function DetailTour() {
     const user = useSelector( state => state.auth.login?.currentUser);
     const tour = useSelector( state => state.tour.tour);
 
-    console.log("detailTour: ", tour);
+    // console.log("detailTour: ", tour);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {id: idTour} = useParams();

@@ -10,7 +10,7 @@ import { logout } from "../../../../redux/authSlice";
 const TopBar = (props) => {
   const { className, currentUser } = props;
 
-  // console.log(currentUser);
+  // // console.log(currentUser);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

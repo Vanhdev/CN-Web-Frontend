@@ -65,6 +65,7 @@ const AddTour = () => {
             const booking_deadline = "" + date_deadline["$y"] + "-" + (date_deadline["$M"] + 1) + "-" + date_deadline["$D"]
             + " " + time_deadline["$H"] + ":" + time_deadline["$m"] + ":" + time_deadline["$s"];  
             const newForm = new FormData();
+            // console.log(arrivalId);
             newForm.append('type_id', formValue.type);
             newForm.append('name', formValue.name);
             newForm.append('overview', formValue.overview);
@@ -78,9 +79,9 @@ const AddTour = () => {
             newForm.append('placeId', formValue.place);
             newForm.append('serviceId', formValue.service);
             newForm.append('voucherId', formValue.voucher);
-            newForm.append('arrivalId1', arrivalId[0]);
-            newForm.append('arrivalId2', arrivalId[1]);
-            newForm.append('arrivalId3', arrivalId[2]);
+            newForm.append('arrivalId1', arrivalId[0] + 5);
+            newForm.append('arrivalId2', arrivalId[1] + 5);
+            newForm.append('arrivalId3', arrivalId[2] + 5);
             newForm.append('image', image);
 
             addTour(newForm, accessToken, navigate);

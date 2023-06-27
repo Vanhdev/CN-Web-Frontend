@@ -14,6 +14,7 @@ const ActionBox = (props) => {
     const { id, setUserId, name, setUserName } = props;
 
     const handleClick = () => {
+        // console.log(id);
         setUserId(id);
         setUserName(name);
     }
@@ -32,25 +33,38 @@ const ManageClient = () => {
     const [tourList, setTourList] = useState([]);
     const [userId, setUserId] = useState(0);
     const [userName, setUserName] = useState('');
+    const [value, setValue] = useState('');
 
     useEffect(() => {
         getAllBooking(accessToken).then(data => {
-            const userFromData = data.data.map(item => {
-                return {
-                    ...item.user,
-                    action: <ActionBox id={item.user.id} setUserId={setUserId} name={item.user.name} setUserName={setUserName} />
-                };
-            });
-            const userList = [... new Set(userFromData)];
-            setDataSource(userList);
-        });
-        getBookTour(30, accessToken).then(data => setTourList(data?.data.map(item => {
-            return {
-                ...item,
-                type: typeArray[item.type_id]
-            };
-        })));
+            const userFromData = data.data;
+            let uniqueUsers = [];
+            let emailSet = new Set();
+
+            userFromData.forEach(item => {
+                if(!emailSet.has(item.email)){
+                    emailSet.add(item.email);
+                    uniqueUsers.push({
+                        ...item.user,
+                        action: <ActionBox id={item.user.id} setUserId={setUserId} name={item.user.name} setUserName={setUserName} />
+                    });
+                }
+            })
+            setDataSource(uniqueUsers);
+        });   
     }, []);
+
+    useEffect(() => {
+        getBookTour(userId, accessToken).then(data => {
+            // console.log(data);
+            setTourList(data?.data.map(item => {
+                return {
+                    ...item.tour,
+                    type: typeArray[item.tour.type_id]
+                };
+            }));
+        });
+    },[userId]);
 
 
     const columns = [
@@ -123,13 +137,15 @@ const ManageClient = () => {
                     Search
                     <Input
                         className="rounded-xl h-10 placeholder:text-black p-5 ml-3"
+                        onChange={(e) => setValue(e.target.value)}
+                        style={{ fontFamily: "Signika"}}
                     />
-                    <Button className="absolute right-0 m-5 border-none p-0 rounded-full">
+                    <Row className="absolute right-0 m-5 border-none p-0 rounded-full">
                         <MdSearch size={15} />
-                    </Button>
+                    </Row>
                 </Col>
             </Row>
-            <Table dataSource={dataSource} columns={columns} className="px-20 pt-5" bordered />
+            <Table dataSource={dataSource.filter(item => item.email.includes(value))} columns={columns} className="px-20 pt-5" bordered />
             {
                 userId == 0 ? null :
                 <>

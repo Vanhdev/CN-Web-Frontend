@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const TourList = () => {
     const accessToken = useSelector(state => state.auth.login.currentUser.accessToken);
     const [dataSource, setDataSource] = useState([]);
+    const [value, setValue] = useState('');
 
     useEffect(() => {
         getAllBooking(accessToken).then(data => setDataSource(data.data.map(item => {
@@ -19,6 +20,7 @@ const TourList = () => {
                 id: item.tour.id,
                 tour: item.tour.name,
                 user: item.user.name,
+                email: item.user.email,
                 date: item.tour.start_date,
                 time: item.tour.duration + " ngày"
             }
@@ -43,6 +45,11 @@ const TourList = () => {
             key: "user"
         },
         {
+            title: "Email",
+            dataIndex: "email",
+            key: "email"
+        },
+        {
             title: "Ngày bắt đầu",
             dataIndex: "date",
             key: "date"
@@ -63,13 +70,15 @@ const TourList = () => {
                     Search
                     <Input
                         className="rounded-xl h-10 placeholder:text-black p-5 ml-3"
+                        onChange={e => setValue(e.target.value)}
+                        style={{ fontFamily: "Signika" }}
                     />
                     <Button className="absolute right-0 m-5 border-none p-0 rounded-full">
                         <MdSearch size={15} />
                     </Button>
                 </Col>
             </Row>
-            <Table dataSource={dataSource} columns={columns} className="px-20 pt-5" bordered />
+            <Table dataSource={dataSource.filter(item => item.email.includes(value))} columns={columns} className="px-20 pt-5" bordered />
         </>
     )
 }
