@@ -34,7 +34,7 @@ function PostList() {
             setLoading(false);
         }
 
-    }, [allPosts]);
+    }, []);
 
     const [searchResults, setSearchResults] = useState(allPosts);
 
