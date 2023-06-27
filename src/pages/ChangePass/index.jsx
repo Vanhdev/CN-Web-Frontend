@@ -1,15 +1,34 @@
 import { useState } from "react";
 import './index.css';
 import { Button, Checkbox, Form, Input, message } from "antd";
+import { changePassword } from "../../API";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function ChangePass() {
-    const [oldPass, setOldPass] = useState('123456789');
-    const [newPass, setNewPass] = useState('123456789');
-    const [confirmPass, setConfirmPass] = useState('123456789');
+    const [oldPass, setOldPass] = useState('');
+    const [newPass, setNewPass] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
     const [checkbox, setCheckbox] = useState(false);
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const user = useSelector( state => state.auth.login?.currentUser);
+
     const handleUpdate = () => {
-        message.success('Đổi mật khẩu thành công!');
+        if(!checkbox) {
+            message.warning("Please click the checkbox!")
+        }
+
+        if(checkbox && user?.accessToken) {
+            const new_content = {
+                old_pass: oldPass,
+                new_pass: newPass,
+                confirm_pass: confirmPass
+            }
+            changePassword(user?.accessToken, dispatch, navigate, user?.id, new_content);
+        }
     }
 
     return(
@@ -33,7 +52,13 @@ function ChangePass() {
                         ]}
                         className="change-pass-item"
                     >
-                        <Input defaultValue={oldPass} type="password" bordered={false} style={{textAlign: 'end'}}></Input>
+                        <Input 
+                            defaultValue={oldPass} 
+                            type="password" 
+                            bordered={false} 
+                            style={{textAlign: 'end'}}
+                            onChange={(e) => setOldPass(e.target.value)}
+                        ></Input>
                     </Form.Item>
                     <Form.Item
                         label='Mật khẩu mới'
@@ -50,7 +75,7 @@ function ChangePass() {
                         ]}
                         style={{borderBottom: '2px solid #ccc'}}
                     >
-                        <Input defaultValue={newPass} type="password" bordered={false} style={{textAlign: 'end'}}></Input>
+                        <Input defaultValue={newPass} type="password" bordered={false} style={{textAlign: 'end'}} onChange={(e) => setNewPass(e.target.value)}></Input>
                     </Form.Item>
                     <Form.Item
                         label='Xác nhận mật khẩu mới'
@@ -67,10 +92,10 @@ function ChangePass() {
                         ]}
                         style={{borderBottom: '2px solid #ccc'}}
                     >
-                        <Input defaultValue={confirmPass} type="password" bordered={false} style={{textAlign: 'end'}}></Input>
+                        <Input defaultValue={confirmPass} type="password" bordered={false} style={{textAlign: 'end'}} onChange={(e) => setConfirmPass(e.target.value)}></Input>
                     </Form.Item>
                     <div className="checkbox">
-                        <Checkbox>Xác nhận thay đổi mật khẩu</Checkbox>
+                        <Checkbox onChange={(e) => setCheckbox(e.target.checked)}>Xác nhận thay đổi mật khẩu</Checkbox>
                     </div>
                     <Button shape="round" size="large" style={{width: 150, margin: '30px auto'}} onClick={ handleUpdate}>Đổi mật khẩu</Button>
                 </Form>
